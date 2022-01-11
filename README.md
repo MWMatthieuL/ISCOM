@@ -29,7 +29,7 @@
 
 - http://iscom.local/ to see the project
     
-- http://iscom.local:8080 to see database (username: tp-docker, password: mw)
+- http://iscom.local:8080 to see database (username: iscom, password: iscom)
     
 - http://iscom.local:1080 to see catched emails
 
