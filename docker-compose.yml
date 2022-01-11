@@ -1,0 +1,66 @@
+version: '3.4'
+#Version
+
+#Declaration of different service
+services:
+    #Service phpmyadmin
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+        - "8080:80"
+        volumes:
+        - ./docker/dev/phpmyadmin/php.ini:/usr/local/etc/php/php.ini
+        depends_on:
+        - db
+        networks:
+        - "iscom_network"
+        environment:
+            UPLOAD_LIMIT: 512M
+            MAX_EXECUTION_TIME: 300
+
+    #Service database
+    db:
+        image: mysql:8.0
+        restart: always
+        command: --max_allowed_packet=32505856
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: iscomdb
+            MYSQL_USER: iscom
+            MYSQL_PASSWORD: iscom
+        networks:
+        - "iscom_network"
+
+    #Service app
+    app:
+        build: docker/dev/app
+        ports:
+        - "80:80"
+        volumes:
+        - "./:/app"
+        restart: always
+        networks:
+            iscom_network:
+                aliases:
+                    - iscom.local
+        environment:
+        - HTTPS_METHOD=noredirect
+        depends_on:
+        - db
+        env_file:
+        - .env
+
+    #Service mailcatcher
+    mailcatcher:
+        image: schickling/mailcatcher:latest
+        ports:
+        - "1080:1080"
+        networks:
+            iscom_network:
+                aliases:
+                - mailcatchersmtp
+
+#Networks
+networks:
+    iscom_network:
+        driver: bridge

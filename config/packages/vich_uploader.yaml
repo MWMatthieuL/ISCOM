@@ -1,0 +1,22 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+            logo:
+                uri_prefix: /images/logo
+                upload_destination: '%kernel.project_dir%/public/images/logo'
+                namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+                inject_on_load: false
+                delete_on_update: true
+                delete_on_remove: true
+
+            image:
+                uri_prefix: /images/application_image
+                upload_destination: '%kernel.project_dir%/public/images/application_image'
+                namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+                inject_on_load: false
+                delete_on_update: true
+                delete_on_remove: true
+
