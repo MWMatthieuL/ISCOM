@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div>
+        {{ form_start(form) }}
+            {% if app.user %}
+                <div>
+                    <p>Vous etes déja connecté(e) avec l'adresse suivante :<br>{{ app.user.username }}</p>
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+            {% else %}
+                <h1>Inscription</h1>
+                {{ form_row(form.email) }}
+                {{ form_row(form.password.first) }}
+                {{ form_widget(form.password.second) }}
+                <button class="btn-blue btn-rounded btn-register" type="submit">
+                    S'inscrire
+                </button>
+            {% endif %}
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

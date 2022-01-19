@@ -1,6 +1,11 @@
 security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+        # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -18,29 +23,28 @@ security:
                     - App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout
+                target: app_login
                 # where to redirect after logout
-                # target: app_any_route
-            remember_me:
-                secret: '%kernel.secret%'
-                lifetime: 30
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
-    encoders:
-        App\Entity\User:
-            algorithm: 'argon2i'
-            memory_cost: 1024
-            time_cost: 3
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/inscription }
+        - { path: ^/connexion, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/entreprise, role: ROLE_COMPANY }
+        - { path: ^/etudiant, role: ROLE_STUDENT }
+        - { path: ^/iscom, role: ROLE_ISCOM }
+        - { path: ^/, role: ROLE_USER }
+
 
     role_hierarchy:
-        ROLE_RESPONSABLE: ROLE_RESPONSABLE
-        ROLE_ADMIN: ROLE_RESPONSABLE
-        ROLE_SUPERADMIN: ROLE_ADMIN
-
+        ROLE_ISCOM: ROLE_USER
+        ROLE_STUDENT: ROLE_USER
+        ROLE_COMPANY: ROLE_USER
+        ROLE_ADMIN: [ROLE_COMPANY, ROLE_STUDENT, ROLE_ISCOM]
