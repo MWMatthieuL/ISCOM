@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscriptions{% endblock %}
+
+{% block body %}
+    <h1>Outil de Matching ISCOM {% if admin %}admin{% endif %}</h1>
+    <p>
+        Lorem ispum dolor sit amet, consectetur adipiscing elit. Nullam sed commodo massa.<br><br>
+        Nulla non egestas tortor, ac porttitor nunc. Nullam quis lacus eget massa venenatis viverra.
+    </p>
+    {% if admin %}
+        <a href="{{ path('app_register_student') }}" id="register" style="display: inline-block; background: #A5201E; width: 250px; padding: 15px; text-align: center; color: #fff">Identifiez vous</a>
+    {% else %}
+        <a href="{{ path('app_register_student') }}" id="register" style="display: inline-block; background: #A5201E; width: 140px; padding: 15px; text-align: center; color: #fff">Etudiant(e)s</a>
+        <a href="{{ path('app_register_company') }}" id="register" style="display: inline-block; background: #A5201E; width: 140px; padding: 15px; text-align: center; color: #fff">Entreprises</a>
+    {% endif %}
+{% endblock %}

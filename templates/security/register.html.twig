@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div>
+        {% if type == 'student' %}
+            <h1>Inscription Etudiant</h1>
+        {% elseif type == 'company' %}
+            <h1>Inscription entreprise</h1>
+        {% elseif type == 'admin' %}
+            <h1>Admin ISCOM</h1>
+        {% endif %}
+        {% if app.user and type != 'admin' %}
+            <div>
+                <p>Vous etes déja connecté(e) avec l'adresse suivante :<br>{{ app.user.username }}</p>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% else %}
+            {{ form_start(form) }}
+                {% if form.companyName is defined %}
+                    {{ form_row(form.companyName) }}
+                {% endif %}
+                {% if form.contactName is defined %}
+                    {{ form_row(form.contactName) }}
+                {% endif %}
+                {% if form.lastName is defined %}
+                    {{ form_row(form.lastName) }}
+                {% endif %}
+                {% if form.firstName is defined %}
+                    {{ form_row(form.firstName) }}
+                {% endif %}
+                {{ form_row(form.email) }}
+                {{ form_row(form.password.first) }}
+                {{ form_row(form.password.second) }}
+                {% if form.phone is defined %}
+                    {{ form_row(form.phone) }}
+                {% endif %}
+                {% if form.firstName is defined %}
+                    {{ form_row(form.imageFile) }}
+                {% endif %}
+                {% if form.conditions is defined %}
+                    {{ form_row(form.conditions) }}
+                {% endif %}
+                <button class="" type="submit">
+                    Créer mon compte
+                </button>
+            {{ form_end(form) }}
+        {% endif %}
+    </div>
+{% endblock %}

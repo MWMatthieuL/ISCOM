@@ -8,6 +8,11 @@
         {% endblock %}
     </head>
     <body style="padding: 5%">
-        {% block body %}Bonjour Monde{% endblock %}
+        {% block body %}
+            Bonjour
+            {% if role is defined %}
+                {{ role }}
+            {% endif %}
+        {% endblock %}
     </body>
 </html>
