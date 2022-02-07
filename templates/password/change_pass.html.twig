@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div>
+       
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+            {{ form_start(form) }}
+                {{ form_row(form.password.first) }}
+                {{ form_row(form.password.second) }}
+
+                <button class="" type="submit">
+                   Enregistrer les modifications
+                </button>
+            {{ form_end(form) }}
+
+    </div>
+{% endblock %}
