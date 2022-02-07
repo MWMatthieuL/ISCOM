@@ -76,7 +76,9 @@ class SecurityController extends AbstractController
     public function registrationStudent(Request $request, EntityManagerInterface $manager,UserPasswordEncoderInterface $passwordEncoder, LoginFormAuthenticator $login, GuardAuthenticatorHandler $guard)
     {
         $user = new User();
-        $user->setRoles(['ROLE_USER', 'ROLE_STUDENT']);
+        $user->setRoles(['ROLE_USER', 'ROLE_STUDENT'])
+            ->setType(User::TYPE_STUDENT);
+
         $form = $this->createForm(RegisterType::class, $user, ['type' => 'student']);
         $form->handleRequest($request);
 
@@ -108,7 +110,9 @@ class SecurityController extends AbstractController
     public function registrationCompany(Request $request, EntityManagerInterface $manager,UserPasswordEncoderInterface $passwordEncoder, LoginFormAuthenticator $login, GuardAuthenticatorHandler $guard)
     {
         $user = new User();
-        $user->setRoles(['ROLE_USER', 'ROLE_COMPANY']);
+        $user->setRoles(['ROLE_USER', 'ROLE_COMPANY'])
+            ->setType(User::TYPE_COMPANY);
+
         $form = $this->createForm(RegisterType::class, $user, ['type' => 'company']);
         $form->handleRequest($request);
 
@@ -142,7 +146,9 @@ class SecurityController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_ISCOM');
 
         $user = new User();
-        $user->setRoles(['ROLE_USER', 'ROLE_ISCOM']);
+        $user->setRoles(['ROLE_USER', 'ROLE_ISCOM'])
+            ->setType(User::TYPE_ISCOM);
+
         $form = $this->createForm(RegisterType::class, $user, ['type' => 'admin']);
         $form->handleRequest($request);
 
