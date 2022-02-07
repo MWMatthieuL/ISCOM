@@ -21,8 +21,6 @@ class ProfileController extends AbstractController
         $form = $this->createForm(ProfileType::class, $user, ['type' => 'student']);
         $form->handleRequest($request);
 
-        dd($form->getData());
-
         if ($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
