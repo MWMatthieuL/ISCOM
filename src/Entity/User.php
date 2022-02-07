@@ -17,6 +17,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class User implements UserInterface, \Serializable
 {
+    const TYPE_STUDENT = 'student';
+    const TYPE_COMPANY = 'company';
+    const TYPE_ISCOM = 'admin';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -76,6 +80,11 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture = null;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
 
     public function getImageName()
     {
@@ -282,5 +291,17 @@ class User implements UserInterface, \Serializable
             $this->contactName,
             $this->picture,
             ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 }
