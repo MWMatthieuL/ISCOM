@@ -5,7 +5,7 @@
 1. Get sources
 
     ```bash
-    git clone git@github.com:MatthieuLV/TP-Docker.git
+    git@github.com:MWMatthieuL/ISCOM.git
     ```  
 
 3. Specific docker configuration
