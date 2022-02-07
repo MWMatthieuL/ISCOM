@@ -15,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @UniqueEntity("email", message="Cette adresse e-mail est déja utilisée")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -52,27 +52,47 @@ class User implements UserInterface
     private $lastName;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contactName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $companyName;
+
+    /**
+     * @ORM\Column(type="string", length=14, nullable=true)
+     */
+    private $phone;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * maxSize = "5M",
+     * mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"},
+     * maxSizeMessage = "La taille maximum autorisée est de 5MB.",
      *
-     * @Vich\UploadableField(mapping="user_image", fileNameProperty="userPictureName", size="userPictureSize")
-     *
+     * @Vich\UploadableField(mapping="user_image", fileNameProperty="picture")
      * @var File|null
      */
-    private $userPictureFile;
+    private $imageFile = null;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     *
-     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $userPictureName;
+    private $picture = null;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     *
-     * @var int|null
-     */
-    private $userPictureSize;
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName($imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -176,70 +196,108 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getFunction(): ?string
+    public function getContactName(): ?string
     {
-        return $this->function;
+        return $this->contactName;
     }
 
-    public function setFunction(string $function): self
+    public function setContactName(?string $contactName): self
     {
-        $this->function = $function;
+        $this->contactName = $contactName;
 
         return $this;
     }
 
-    public function getHomePhone(): ?string
+    public function getCompanyName(): ?string
     {
-        return $this->homePhone;
+        return $this->companyName;
     }
 
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $userPictureFile
-     */
-    public function setUserPictureFile(?File $userPictureFile = null): void
+    public function setCompanyName(?string $companyName): self
     {
-        $this->userPictureFile = $userPictureFile;
+        $this->companyName = $companyName;
 
-        if (null !== $userPictureFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function setImageFile(?File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
         }
     }
 
-    public function getUserPictureFile(): ?File
+    public function getImageFile(): ?File
     {
-        return $this->userPictureFile;
-    }
-
-    public function setUserPictureName(?string $userPictureName): void
-    {
-        $this->userPictureName = $userPictureName;
-    }
-
-    public function getUserPictureName(): ?string
-    {
-        return $this->userPictureName;
-    }
-
-    public function setUserPictureSize(?int $userPictureSize): void
-    {
-        $this->userPictureSize = $userPictureSize;
-    }
-
-    public function getUserPictureSize(): ?int
-    {
-        return $this->userPictureSize;
+        return $this->imageFile;
     }
 
     public function getDisplayName(): ?string
     {
         return ucfirst(strtolower($this->getFirstName())).' '.strtoupper($this->getLastName());
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->firstName,
+            $this->lastName,
+            $this->phone,
+            $this->email,
+            $this->roles,
+            $this->password,
+            $this->companyName,
+            $this->contactName,
+            $this->picture,
+        ]);
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->firstName,
+            $this->lastName,
+            $this->phone,
+            $this->email,
+            $this->roles,
+            $this->password,
+            $this->companyName,
+            $this->contactName,
+            $this->picture,
+            ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

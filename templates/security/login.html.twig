@@ -3,6 +3,9 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
+    {% if type is defined %}
+        {{ type }}
+    {% endif %}
     <div>
         <form method="post">
             {% if error %}
@@ -21,8 +24,6 @@
                 <button class="btn-blue btn-rounded btn-connection" type="submit">
                     Se connecter
                 </button>
-                <a href="{{ path('app_register_student') }}" id="register">Inscription étudiant</a>
-                <a href="{{ path('app_register_company') }}" id="register">Inscription entreprise</a>
             {% endif %}
         </form>
     </div>

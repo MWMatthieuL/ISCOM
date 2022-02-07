@@ -9,6 +9,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     /**
+     * @Route("/", name="default")
+     * @return Response
+     */
+    public function default(): Response
+    {
+        return $this->render('base.html.twig');
+    }
+
+    /**
      * @Route("/etudiant", name="default_student", methods={"GET"})
      * @return Response
      */
