@@ -54,11 +54,6 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $contactName;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $companyName;
 
     /**
@@ -192,18 +187,6 @@ class User implements UserInterface, \Serializable
     public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getContactName(): ?string
-    {
-        return $this->contactName;
-    }
-
-    public function setContactName(?string $contactName): self
-    {
-        $this->contactName = $contactName;
 
         return $this;
     }

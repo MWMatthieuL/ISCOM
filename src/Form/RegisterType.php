@@ -71,10 +71,17 @@ class RegisterType extends AbstractType
                         ],
                         'required' => true
                     ])
-                    ->add('contactName', TextType::class, [
+                    ->add('lastName', TextType::class, [
                         'label' => false,
                         'attr' => [
-                            'placeholder' => 'Nom et prénom contact entreprise'
+                            'placeholder' => 'Nom contact'
+                        ],
+                        'required' => true
+                    ])
+                    ->add('firstName', TextType::class, [
+                        'label' => false,
+                        'attr' => [
+                            'placeholder' => 'Prénom contact'
                         ],
                         'required' => true
                     ])
@@ -105,10 +112,17 @@ class RegisterType extends AbstractType
             case 'admin':
                 $emailPlaceholder = 'Email administration';
                 $builder
-                    ->add('contactName', TextType::class, [
+                    ->add('lastName', TextType::class, [
                         'label' => false,
                         'attr' => [
                             'placeholder' => 'Nom'
+                        ],
+                        'required' => true
+                    ])
+                    ->add('firstName', TextType::class, [
+                        'label' => false,
+                        'attr' => [
+                            'placeholder' => 'Prénom'
                         ],
                         'required' => true
                     ])
