@@ -13,11 +13,16 @@
 {% if app.user.type is defined %}
     {% include 'sidebar.html.twig' %}
 {% endif %}
-{% block body %}
-    Bonjour
-    {% if role is defined %}
-        {{ role }}
+<div class="container m-0 p-0">
+    {% if app.user.type is defined %}
+        {% include 'user.html.twig' %}
     {% endif %}
-{% endblock %}
+    {% block body %}
+        Bonjour
+        {% if role is defined %}
+            {{ role }}
+        {% endif %}
+    {% endblock %}
+</div>
 </body>
 </html>
