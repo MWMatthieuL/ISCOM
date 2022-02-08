@@ -2,6 +2,8 @@
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import "sidebar";
 @import "register";
+@import "password";
+@import "quick_user";
 
 html {
   height: 100% !important;
@@ -12,5 +14,15 @@ html {
 body {
   display: flex;
   height: 100% !important;
-  overflow: scroll;
+
+  >.container {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    max-width: 70% !important;
+    margin-top: 5vh !important;
+  }
 }

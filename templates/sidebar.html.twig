@@ -23,10 +23,10 @@
                     <a href="{{ path('password_iscom') }}" class="h6">Mot de passe</a>
                 </span>
                 </li>
-                <li class="{{ app.request.get('_route') is same as "company_iscom"  ? 'active' : ''}}">
+                <li class="{{ app.request.get('_route') is same as "company_search"  ? 'active' : ''}}">
                 <span>
                     <i class="bi bi-building"></i>
-                    <a href="{{ path('company_iscom') }}" class="h6">Entreprise</a>
+                    <a href="{{ path('company_search') }}" class="h6">Entreprise</a>
                 </span>
                 </li>
                 <li class="{{ app.request.get('_route') is same as "student_iscom"  ? 'active' : ''}}">
