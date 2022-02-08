@@ -1,0 +1,93 @@
+
+#sidebar {
+  min-width: 20%;
+  max-height: 100%;
+  margin-right: 4em;
+  box-shadow: 10px 0 15px #f0f0f0;
+}
+
+#nav_items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+
+  .active{
+    background-color: #f8f8f8 !important;
+    a {
+      color: #a5201e !important;
+    }
+  }
+
+  > li {
+    margin: 2vh 0;
+    padding: 2.5vh 2em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    $this: &;
+
+    i {
+      margin-right: 1em;
+      font-size: 1.5rem;
+      color: #a5201e;
+    }
+
+    a {
+      margin: 0;
+      text-decoration: none;
+      color: black;
+
+    }
+
+    > span {
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    &:hover {
+      background-color: #f8f8f8;
+    }
+
+  }
+
+}
+
+#quick-user {
+  width: 100%;
+  height: 25%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .picture {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width:115px;
+    height:115px;
+  }
+
+  .student, .iscom{
+    border-radius:5px;
+  }
+
+  .company{
+    border-radius: 100%;
+    border: 2px solid black;
+
+  }
+
+  >div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+  }
+}

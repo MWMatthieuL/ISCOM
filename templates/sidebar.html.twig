@@ -1,0 +1,103 @@
+<div id="sidebar">
+    <div id="quick-user">
+        <span class="picture {{ app.user.type }}" style="background-image: url({{ asset('images/user/'~app.user.picture) }})"></span>
+        <div>
+            <strong>{{ app.user.displayName }}</strong>
+            <span class="text-muted">{{ app.user.email }}</span>
+        </div>
+    </div>
+    <div>
+        <span class="text-muted ml-4">Menu</span>
+        {%  set role =  app.user.roles | filter(role => role is not same as "ROLE_USER") | first %}
+        <ul id="nav_items">
+            {%  if role is same as 'ROLE_ISCOM' %}
+                <li class="{{ app.request.get('_route') is same as "profile_iscom"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-person"></i>
+                    <a href="{{ path('profile_iscom') }}"  class="h6">Profil</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "password_iscom"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-lock"></i>
+                    <a href="{{ path('password_iscom') }}" class="h6">Mot de passe</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "company_iscom"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-building"></i>
+                    <a href="{{ path('company_iscom') }}" class="h6">Entreprise</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "student_iscom"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-mortarboard"></i>
+                    <a href="{{ path('student_iscom') }}" class="h6">Etudiants</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "dashboard_iscom"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-bar-chart-line"></i>
+                    <a href="{{ path('dashboard_iscom') }}" class="h6">Dashboard</a>
+                </span>
+                </li>
+            {% elseif role is same as 'ROLE_COMPANY' %}
+                <li class="{{ app.request.get('_route') is same as "profile_company"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-person"></i>
+                    <a href="{{ path('profile_company') }}"  class="h6 {{ app.request.get('_route') is same as "profile_company"  ? 'active' : ''}}">Profil</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "password_company"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-lock"></i>
+                    <a href="{{ path('password_company') }}" class="h6">Mot de passe</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "password_company"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-briefcase"></i>
+                    <a href="{{ path('password_company') }}" class="h6">Mes offres et matchs</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "password_company"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-heart"></i>
+                    <a href="{{ path('password_company') }}" class="h6">Matchs conclus</a>
+                </span>
+                </li>
+            {% elseif role is same as 'ROLE_STUDENT' %}
+                <li class="{{ app.request.get('_route') is same as "profile_student"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-person"></i>
+                    <a href="{{ path('profile_student') }}"  class="h6 {{ app.request.get('_route') is same as "profile_student"  ? 'active' : ''}}">Profil</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "password_student"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-lock"></i>
+                    <a href="{{ path('password_student') }}" class="h6">Mot de passe</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "password_student"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-briefcase"></i>
+                    <a href="{{ path('password_student') }}" class="h6">Mes matchs</a>
+                </span>
+                </li>
+                <li class="{{ app.request.get('_route') is same as "password_student"  ? 'active' : ''}}">
+                <span>
+                    <i class="bi bi-heart"></i>
+                    <a href="{{ path('password_student') }}" class="h6">Matchs conclus</a>
+                </span>
+                </li>
+            {% endif %}
+            <li>
+                <span>
+                    <i class="bi bi-box-arrow-right"></i>
+                    <a href="{{ path('app_logout') }}" class="h6">Se deconnecter</a>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

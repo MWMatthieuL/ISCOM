@@ -11,4 +11,3 @@ import './scss/app.scss';
 // start the Stimulus application
 import 'popper.js';
 import 'bootstrap/js/dist/dropdown';
-import './bootstrap';
