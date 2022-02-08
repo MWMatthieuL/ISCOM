@@ -48,7 +48,24 @@ class PasswordController extends AbstractController
      */
     public function iscom_password(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $user = $this->getUser();
+        $form = $this->createForm(ChangePasswordType::class, $user);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+            $userPass = $user->getPassword();
+
+            $user->setPassword($passwordEncoder->encodePassword($user, $task->getPassword()));
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute("password_student");
+        }
+
+        return $this->render('password/change_pass.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
     }
 
     /**
@@ -60,6 +77,23 @@ class PasswordController extends AbstractController
      */
     public function company_password(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+        $user = $this->getUser();
+        $form = $this->createForm(ChangePasswordType::class, $user);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+            $userPass = $user->getPassword();
+
+            $user->setPassword($passwordEncoder->encodePassword($user, $task->getPassword()));
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute("password_student");
+        }
+
+        return $this->render('password/change_pass.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
     }
 }

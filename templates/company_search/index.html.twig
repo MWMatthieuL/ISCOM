@@ -8,6 +8,7 @@
     display: flex;
     width:100%;
     padding:0;
+    margin-left: -15px;
 }
 .example-wrapper {
 	max-width: 800px;
@@ -20,22 +21,23 @@
 	padding: 2px 6px;
 }
 
-.container {}
-
 .list-container {
 	display: flex;
-    width:100%;
+    width:104%;
 }
 
 .title {
+    margin-top: 75px;
+    margin-left: 14px;
 	margin-bottom: 25px
 }
 
 .search {
-    width:90%important;
+    width:100%important;
 	border-radius: 25px!important;
 	border-radius: 25px!important;
 	padding-left: 60px!important;
+    border-color: #3f90b4!important;
 
 }
 
@@ -61,12 +63,10 @@
 .search-icon{
     left: 20px;
     position: relative;
-    bottom: 32px;
+    bottom: 33px;
+    color: #3f90b4;
 }
 
-.count{
-    margin-left:15px;
-}
 .element{
     text-decoration: none;
     margin: 16px;
@@ -74,16 +74,15 @@
     width: 21%;
     border-radius: 11px;
     -webkit-box-shadow: 0px 10px 12px -1px rgba(219,219,219,0.83); 
-box-shadow: 0px 10px 12px -1px rgba(219,219,219,0.83);
+    box-shadow: 0px 10px 12px -1px rgba(219,219,219,0.83);
+}
 
+.form-group{
+        margin-bottom: -5px!important;
 }
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<div class="d-flex">
-    <div class="col-3">
-        <p>menu</p>
-    </div>
-    <div class="col-8">
+    <div class="col-10">
         <div class="grid">           
             <h4 class="title">Rechercher une entreprise</h4>
             <div class="form-group has-success has-feedback">
@@ -92,36 +91,35 @@ box-shadow: 0px 10px 12px -1px rgba(219,219,219,0.83);
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
             </div>
-            <h4 class="count">Entreprise {{company|length }}</h4>
+            <h4 class="count">Entrepris(e)s <span id="count">({{ company|length }})</span></h4>
                 <div class="list-container">
                     
                     <ul id="list">
                     {% for compani in company %}
                         <li  class="element"><a href="#">{{ compani.email}}</a></li>
                     {% endfor %}
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="col">
-        <p>empty</p>
-    </div>
-
-<div>
-
 <script>
     function search(){ // Declare variables
+        var count = 0;
+      
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById('myInput');
     filter = input.value.toUpperCase();
     ul = document.getElementById("list");
     li = ul.getElementsByTagName('li');
 
+
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            count++;
+            document.getElementById('count').innerText = count
         li[i].style.display = "";
         } else {
         li[i].style.display = "none";
