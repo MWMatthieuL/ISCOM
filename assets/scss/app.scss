@@ -16,7 +16,7 @@ body {
   height: 100% !important;
 
   >.container {
-    overflow: scroll;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
