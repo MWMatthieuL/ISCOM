@@ -22,7 +22,15 @@ services:
       - "8080:80"
 
   # Mailcatcher service
- 
+  mailcatcher:
+    image: schickling/mailcatcher:latest
+    ports:
+      - "1080:1080"
+    networks:
+      iscom_network:
+        aliases:
+          - mailcatchersmtp
+
 # Volumes
 volumes:
   socket_dir:

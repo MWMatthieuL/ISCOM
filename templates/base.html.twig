@@ -9,15 +9,20 @@
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     {% endblock %}
 </head>
-<body>
-{% if app.user.type is defined %}
-    {% include 'sidebar.html.twig' %}
-{% endif %}
-{% block body %}
-    Bonjour
-    {% if role is defined %}
-        {{ role }}
-    {% endif %}
-{% endblock %}
-</body>
+    <body>
+        {% if app.user.type is defined %}
+            {% include 'sidebar.html.twig' %}
+        {% endif %}
+        <div class="wrapper m-0 p-0">
+            {% if app.user.type is defined %}
+                {% include 'user.html.twig' %}
+            {% endif %}
+            {% block body %}
+                Bonjour
+                {% if role is defined %}
+                    {{ role }}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </body>
 </html>
