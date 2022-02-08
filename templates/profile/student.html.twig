@@ -3,13 +3,13 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <div>
-        <h1>Profil</h1>
+    <div id="profile">
+        <h2 class="mb-2"><strong>Profil</strong></h2>
         {{ form_start(form) }}
             {{ form_row(form.lastName) }}
             {{ form_row(form.firstName) }}
             {{ form_row(form.email) }}
-            <button class="" type="submit">
+                <button class="btn btn-lg btn-block btn-secondary" type="submit">
                 Enregistrer les modifications
             </button>
         {{ form_end(form) }}
