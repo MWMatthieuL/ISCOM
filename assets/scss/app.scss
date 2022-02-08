@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import '~@fortawesome/fontawesome-free/css/all.css';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import "~@fortawesome/fontawesome-free/css/all.css";
 @import "sidebar";
 @import "register";
 @import "password";
@@ -16,8 +16,7 @@ body {
   display: flex;
   height: 100% !important;
 
-  >.container {
-    overflow: auto;
+  > .container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
