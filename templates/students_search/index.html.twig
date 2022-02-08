@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+#list {
+    list-style-type: none;
+    flex-wrap: wrap;
+    display: flex;
+    width:100%;
+    padding:0;
+}
+.example-wrapper {
+	max-width: 800px;
+	width: 95%;
+	font: 18px/1.5 sans-serif;
+}
+
+.example-wrapper code {
+	background: #F5F5F5;
+	padding: 2px 6px;
+}
+
+.container {}
+
+.list-container {
+	display: flex;
+    width:100%;
+}
+
+.title {
+	margin-bottom: 25px
+}
+
+.search {
+    width:90%important;
+	border-radius: 25px!important;
+	border-radius: 25px!important;
+	padding-left: 60px!important;
+
+}
+
+.input-icons i {
+	position: absolute;
+}
+
+.input-icons {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.icon {
+	padding: 10px;
+	min-width: 40px;
+}
+
+.input-field {
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+}
+.search-icon{
+    left: 20px;
+    position: relative;
+    bottom: 32px;
+}
+.element{
+    text-decoration: none;
+    margin: 16px;
+    height: 127px;
+    width: 21%;
+    border-radius: 11px;
+    -webkit-box-shadow: 0px 10px 12px -1px rgba(219,219,219,0.83); 
+    box-shadow: 0px 10px 12px -1px rgba(219,219,219,0.83);
+
+}
+</style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="d-flex">
+    <div class="col-3">
+        <p>menu</p>
+    </div>
+    <div class="col-8">
+        <div class="grid">           
+            <h4 class="title">Rechercher un étudiant</h4>
+            <div class="form-group has-success has-feedback">
+                <input placeholder="search" onKeyUp="search()" id="myInput" class="form-control search" aria-label="Default" aria-describedby="inputGroup-sizing-default"></input> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi search-icon bi-search form-control-feedback" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </div>
+                <div class="list-container">
+                    <ul id="list">
+                    {% for student in students %}
+                        <li class="element"><a href="#">{{ student.firstname}}</a></li>
+                    {% endfor %}
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div class="col">
+        <p>empty</p>
+    </div>
+
+<div>
+
+<script>
+    function search(){ // Declare variables
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("list");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+        } else {
+        li[i].style.display = "none";
+        }
+    }
+        
+    }
+</script>
+{% endblock %}
