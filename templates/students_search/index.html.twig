@@ -21,8 +21,6 @@
 	padding: 2px 6px;
 }
 
-.container {}
-
 .list-container {
 	display: flex;
     width:104%;
@@ -82,7 +80,6 @@
 }
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<div class="d-flex container">
     <div class="col-10">
         <div class="grid">           
             <h4 class="title">Rechercher un étudiant</h4>
@@ -99,15 +96,10 @@
                     {% for student in students %}
                         <li class="element"><a href="#">{{ student.firstname}}</a></li>
                     {% endfor %}
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="col">
-        <p>empty</p>
-    </div>
-
-<div>
 
 
 <script>
