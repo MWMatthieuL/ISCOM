@@ -3,21 +3,22 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <div>
-        {% if type == 'student' %}
-            <h1>Inscription Etudiant</h1>
-        {% elseif type == 'company' %}
-            <h1>Inscription entreprise</h1>
-        {% elseif type == 'admin' %}
-            <h1>Admin ISCOM</h1>
-        {% endif %}
-        {% if app.user and type != 'admin' %}
-            <div>
-                <p>Vous etes déja connecté(e) avec l'adresse suivante :<br>{{ app.user.username }}</p>
-                <a href="{{ path('app_logout') }}">Déconnexion</a>
-            </div>
-        {% else %}
-            {{ form_start(form) }}
+    <div id="register">
+        <div id="form">
+            {% if type == 'student' %}
+                <h1>Inscription Etudiant</h1>
+            {% elseif type == 'company' %}
+                <h1>Inscription entreprise</h1>
+            {% elseif type == 'admin' %}
+                <h1>Admin ISCOM</h1>
+            {% endif %}
+            {% if app.user and type != 'admin' %}
+                <div>
+                    <p>Vous etes déja connecté(e) avec l'adresse suivante :<br>{{ app.user.username }}</p>
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+            {% else %}
+                {{ form_start(form) }}
                 {% if form.companyName is defined %}
                     {{ form_row(form.companyName) }}
                 {% endif %}
@@ -42,7 +43,11 @@
                 <button class="" type="submit">
                     Créer mon compte
                 </button>
-            {{ form_end(form) }}
-        {% endif %}
+                {{ form_end(form) }}
+            {% endif %}
+        </div>
+        <div>
+            <a href="{{ asset("build/team.png") }}"></a>
+        </div>
     </div>
 {% endblock %}
