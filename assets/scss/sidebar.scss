@@ -1,9 +1,8 @@
-
 #sidebar {
-  min-width: 20%;
+  min-width: 23%;
   max-height: 100%;
   margin-right: 4em;
-  box-shadow: 10px 0 15px #f0f0f0;
+  box-shadow: 3px 0px 0px #f0f0f0;
 }
 
 #nav_items {
@@ -11,8 +10,7 @@
   margin: 0;
   padding: 0;
 
-
-  .active{
+  .active {
     background-color: #f8f8f8 !important;
     a {
       color: #a5201e !important;
@@ -38,7 +36,6 @@
       margin: 0;
       text-decoration: none;
       color: black;
-
     }
 
     > span {
@@ -51,9 +48,7 @@
     &:hover {
       background-color: #f8f8f8;
     }
-
   }
-
 }
 
 #quick-user {
@@ -70,24 +65,24 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width:115px;
-    height:115px;
+    width: 115px;
+    height: 115px;
   }
 
-  .student, .iscom{
-    border-radius:5px;
+  .student,
+  .iscom {
+    border-radius: 5px;
   }
 
-  .company{
+  .company {
     border-radius: 100%;
     border: 2px solid black;
-
   }
 
-  >div {
+  > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
   }
 }
