@@ -87,7 +87,7 @@ class User implements UserInterface, \Serializable
     private $picture = null;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $type;
 
@@ -276,8 +276,8 @@ class User implements UserInterface, \Serializable
             $this->roles,
             $this->password,
             $this->companyName,
-            $this->contactName,
-            $this->picture,
+            $this->type,
+            
         ]);
     }
 
@@ -293,8 +293,7 @@ class User implements UserInterface, \Serializable
             $this->roles,
             $this->password,
             $this->companyName,
-            $this->contactName,
-            $this->picture,
+            $this->type
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
@@ -303,7 +302,7 @@ class User implements UserInterface, \Serializable
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->type = $type;
 
