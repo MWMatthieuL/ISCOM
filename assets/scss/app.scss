@@ -15,14 +15,13 @@ html {
 body {
   display: flex;
   height: 100% !important;
+  width: 100% !important;
+  position: relative;
 
-  > .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  > .wrapper {
+    overflow: auto;
+    width: 77%;
     position: relative;
-    max-width: 70% !important;
-    margin-top: 5vh !important;
+    padding: 4em !important;
   }
 }
