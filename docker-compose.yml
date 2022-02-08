@@ -50,15 +50,6 @@ services:
         env_file:
         - .env
 
-    #Service mailcatcher
-    mailcatcher:
-        image: schickling/mailcatcher:latest
-        ports:
-        - "1080:1080"
-        networks:
-            iscom_network:
-                aliases:
-                - mailcatchersmtp
 
 #Networks
 networks:
