@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+
 
 {% block title %}Questionnaire{% endblock %}
 
@@ -9,4 +9,21 @@
         Envoyer
     </button>
     {{ form_end(form) }}
+
+    <script>
+    function checkCount(element,limit){
+        if(element.querySelectorAll('input[type="checkbox"]:checked').length >= limit){
+           {#  alert('vous avez seldctioner 5 element'); #}
+                var thisList = element.querySelectorAll('input[type=checkbox]'); 
+                var empty = [].filter.call( thisList, function( el ) {
+                    if(!el.checked){
+                        el.disabled = true;
+                    }
+                    return !el.checked
+                });
+                console.log(empty)
+        }
+    }
+    
+    </script>
 {% endblock %}

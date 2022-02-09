@@ -29,9 +29,13 @@ class StudentQuestionsType extends AbstractType
                     "Association" => "Association",
                 ],
                 'expanded' => 'true',
+                'attr' => [
+                    'onClick' => 'checkCount(this,5)',
+                    'class' => 'list'
+                ],
                 'multiple' => 'true',
                 'required' => true,
-    //                'mapped' => false,
+                //                'mapped' => false,
                 'label' => 'Type de structure recherche',
             ])
             ->add('sector', ChoiceType::class, [
@@ -59,9 +63,13 @@ class StudentQuestionsType extends AbstractType
                     "Transport et logistique" => "Transport",
                 ],
                 'expanded' => 'true',
+                'attr' => [
+                    'onClick' => 'checkCount(this,5)',
+                    'class' => 'list'
+                ],
                 'multiple' => 'true',
                 'required' => true,
-    //                'mapped' => false,
+                //                'mapped' => false,
                 'label' => 'Secteurs recherchées',
             ])
             ->add('mainSkills', ChoiceType::class, [
@@ -78,9 +86,13 @@ class StudentQuestionsType extends AbstractType
                     "Production et Rédaction de contenus pour les réseaux sociaux et les RP" => "Rédaction",
                 ],
                 'expanded' => 'true',
+                'attr' => [
+                    'onClick' => 'checkCount(this,5)',
+                    'class' => 'list'
+                ],
                 'multiple' => 'true',
                 'required' => true,
-    //                'mapped' => false,
+                //                'mapped' => false,
                 'label' => 'Les principales compétences recherchées pour le poste',
             ])
             ->add('softSkills', ChoiceType::class, [
@@ -95,9 +107,13 @@ class StudentQuestionsType extends AbstractType
                     "Orthographe et rédaction" => "Orthographe",
                 ],
                 'expanded' => 'true',
+                'attr' => [
+                    'onClick' => 'checkCount(this,5)',
+                    'class' => 'list'
+                ],
                 'multiple' => 'true',
                 'required' => true,
-    //                'mapped' => false,
+                //                'mapped' => false,
                 'label' => 'Les principales soft skills recherchés pour le poste',
             ])
             ->add('places', ChoiceType::class, [
@@ -242,9 +258,13 @@ class StudentQuestionsType extends AbstractType
                     "Uniquement français" => "Français",
                 ],
                 'expanded' => 'true',
+                'attr' => [
+                    'onClick' => 'checkCount(this,5)',
+                    'class' => 'list'
+                ],
                 'multiple' => 'true',
                 'required' => true,
-    //                'mapped' => false,
+                //                'mapped' => false,
                 'label' => 'Les principales soft skills recherchés pour le poste',
             ])
             ->add('period', ChoiceType::class, [
@@ -265,9 +285,13 @@ class StudentQuestionsType extends AbstractType
                     "Juillet/Août (pour 2 mois) - 2e année et 3e année" => "Période 14",
                 ],
                 'expanded' => 'true',
+                'attr' => [
+                    'onClick' => 'checkCount(this,2)',
+                    'class' => 'list'
+                ],
                 'multiple' => 'true',
                 'required' => true,
-    //                'mapped' => false,
+                //                'mapped' => false,
                 'label' => 'Les principales soft skills recherchés pour le poste',
             ])
             ->add('cvFile', VichFileType::class, [
@@ -277,8 +301,7 @@ class StudentQuestionsType extends AbstractType
                 'delete_label' => 'Supprimer',
                 'download_label' => 'Télécharger',
                 'download_uri' => true,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

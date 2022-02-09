@@ -93,7 +93,7 @@
                 <div class="list-container">
                     <ul id="list">
                     {% for student in students %}
-                        <li class="element"><a href="#">{{ student.firstname}}</a></li>
+                        <li class="element"><a href="#"><img style="width:100%" src="{{ asset('images/user/' ~ student.picture) }}">{{ student.firstname}}{{ student.lastname}}</a></li>
                     {% endfor %}
                 </ul>
             </div>
