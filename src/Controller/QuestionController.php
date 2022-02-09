@@ -80,7 +80,7 @@ class QuestionController extends AbstractController
 
                     $matchPercentage = ($matchCount / count($offer->getQuestionnary())) * 100;
 
-                    if ($matchPercentage >= 5) {
+                    if ($matchPercentage >= 75) {
                         if (null === $matching) {
                             $matching = new Matching();
                             $matching->setOffer($offer)
@@ -91,7 +91,7 @@ class QuestionController extends AbstractController
                         }
 
                         $em->persist($matching);
-                    } elseif ($matchPercentage < 5 && null !== $matching) {
+                    } elseif ($matchPercentage < 75 && null !== $matching) {
                         $em->remove($matching);
                     }
                 }
@@ -188,7 +188,7 @@ class QuestionController extends AbstractController
 
                     $matchPercentage = ($matchCount / count($offer->getQuestionnary())) * 100;
 
-                    if ($matchPercentage >= 5) {
+                    if ($matchPercentage >= 75) {
                         if (null === $matching) {
                             $matching = new Matching();
                             $matching->setOffer($offer)
@@ -199,7 +199,7 @@ class QuestionController extends AbstractController
                         }
 
                         $em->persist($matching);
-                    } elseif ($matchPercentage < 5 && null !== $matching) {
+                    } elseif ($matchPercentage < 75 && null !== $matching) {
                         $em->remove($matching);
                     }
                 }
@@ -207,7 +207,7 @@ class QuestionController extends AbstractController
 
             $em->flush();
 
-            return $this->redirectToRoute('default_company');
+            return $this->redirectToRoute('match_and_offers');
         }
 
         return $this->render('question/company.html.twig', [

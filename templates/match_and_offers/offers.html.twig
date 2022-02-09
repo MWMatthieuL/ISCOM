@@ -9,20 +9,23 @@
             width: 200px;
         }
 
-        .tab-active, #provided-tab:hover {
-            color: #A5201E !important;
-            font-weight: bold;
-            transition: 1s ease;
+        #add a {
+            color: #888 !important;
+            text-decoration: none !important;
         }
 
+        .tab-active, .tab:hover, #add a:hover {
+            color: #A5201E !important;
+            font-weight: bold;
+        }
     </style>
     <h2>Mes offres postées</h2>
     <h5 style="color: #555555;">Cliquez sur vos offres pour voir les profils d'étudiants qui ont matché avec celles-ci.</h5>
-    <ul class="tabs" style="list-style: none; padding-left: 0; ; margin-top: 20px">
-        <li id='provided-tab' style="display: inline-block; ;"><i style="" class="bi bi-plus-circle-dotted"></i>  Ajouter une offre</li>
-        <li id='all-tab' class="tab-active" style="display: inline-block; margin-right: 40px;">Toutes mes offres ( {{ offers|length }} )</li>
-        <li id='non-provided-tab' style="display: inline-block; ;">Non pourvues ( {{ nonProvidedOffers|length }} )</li>
-        <li id='non-provided-tab' style="display: inline-block; margin-right: 40px;">Pourvues ( {{ providedOffers|length }} )</li>
+    <ul class="tabs" style="list-style: none; padding-left: 0; ; margin-top: 20px; margin-bottom: 30px">
+        <li id="add" style="display: inline-block;font-weight: bold;"><a href="{{ path('questions_company_new') }}"><i style="" class="bi bi-plus-square-dotted"></i>  Ajouter une offre</a></li>
+        <li id='all-tab' class="tab tab-active" style="display: inline-block; margin-right: 40px;">Toutes mes offres ( {{ offers|length }} )</li>
+        <li id='non-provided-tab' class="tab" style="display: inline-block; margin-right: 40px;">Non pourvues ( {{ nonProvidedOffers|length }} )</li>
+        <li id='provided-tab' class="tab" style="display: inline-block; margin-right: 40px;">Pourvues ( {{ providedOffers|length }} )</li>
     </ul>
     <div id="all-offers">
         {% for offer in offers %}
@@ -30,31 +33,88 @@
                 <h5 style="font-weight: bold">{{ offer.title }}</h5>
                 <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 15px"></i></h6>
                 <h6>{{ offer.type|capitalize }}</h6>
-                <div style="position: absolute; right: 22px;top: 27px;padding: 18px 11px; font-weight: bold; font-size: 22px;border-radius: 9px;background: #A5201E;">Pourvue</div>
-                <div style="position: absolute;right: 0;bottom: 0;padding: 10px 35px;border-radius: 18px 0 18px 0;background: #A5201E;font-size: 19px;line-height: 22px;">
-                    {{ offer.matchings.count }}
-                    étudiant{{ offer.matchings.count > 1 ? 's' : '' }}<br>
-                    {{ offer.matchings.count > 1 ? 'a' : 'ont' }} matché
-                </div>
+                {% if offer.provided %}
+                    <div style="text-align: center;position: absolute;right: 0;bottom: 0;padding: 10px 35px;border-radius: 18px 0 18px 0;background: #006C9B;font-size: 19px;line-height: 22px;">
+                        Cette offre a été<br>
+                        pourvue
+                    </div>
+                {% else %}
+                    <div style="text-align: center;position: absolute; right: 22px;top: 27px;padding: 18px 11px; font-weight: bold; font-size: 22px;border-radius: 9px;background: #A5201E;">Pourvue</div>
+                    <div style="text-align: center;position: absolute;right: 0;bottom: 0;padding: 10px 35px;border-radius: 18px 0 18px 0;background: #A5201E;font-size: 19px;line-height: 22px;">
+                        {% if offer.matchings.count > 0 %}
+                            {{ offer.matchings.count }}
+                            étudiant{{ offer.matchings.count == 1 ? '' : 's' }}<br>
+                            {{ offer.matchings.count == 1 ? 'a' : 'ont' }} matché
+                        {% else %}
+                            Pas encore<br>de match
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
     <div id="non-provided-offers">
         {% for offer in nonProvidedOffers %}
-            <div style="width: 70%; background: #006C9B; color: #fff; padding: 20px; margin-bottom: 20px">
-                <h5>{{ offer.title }}</h5>
-                <h6>Offre publiée le {{ offer.publishedAt|date("d-m-Y") }}</h6>
+            <div style="position:relative ; width: 70%; background: #006C9B; color: #fff; padding: 45px 30px 40px 30px; margin-bottom: 20px; border-radius: 18px;">
+                <h5 style="font-weight: bold">{{ offer.title }}</h5>
+                <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 15px"></i></h6>
                 <h6>{{ offer.type|capitalize }}</h6>
+                <div style="position: absolute; right: 22px;top: 27px;padding: 18px 11px; font-weight: bold; font-size: 22px;border-radius: 9px;background: #A5201E;">Pourvue</div>
+                <div style="text-align: center;position: absolute;right: 0;bottom: 0;padding: 10px 35px;border-radius: 18px 0 18px 0;background: #A5201E;font-size: 19px;line-height: 22px;">
+                    {% if offer.matchings.count > 0 %}
+                        {{ offer.matchings.count }}
+                        étudiant{{ offer.matchings.count == 1 ? '' : 's' }}<br>
+                        {{ offer.matchings.count == 1 ? 'a' : 'ont' }} matché
+                    {% else %}
+                        Pas encore<br>de match
+                    {% endif %}
+                </div>
             </div>
         {% endfor %}
     </div>
     <div id="provided-offers">
         {% for offer in providedOffers %}
-            <div style="width: 70%; background: #A5201E; color: #fff; padding: 20px; margin-bottom: 20px; ">
-                <h5>{{ offer.title }}</h5>
-                <h6>Offre publiée le {{ offer.publishedAt|date("d-m-Y") }}</h6>
-                <h6>{{ offer.type }}</h6>
+            <div style="position:relative ; width: 70%; background: {{ offer.provided ? '#A5201E' : '#006C9B'}}; color: #fff; padding: 45px 30px 40px 30px; margin-bottom: 20px; border-radius: 18px;">
+                <h5 style="font-weight: bold">{{ offer.title }}</h5>
+                <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 15px"></i></h6>
+                <h6>{{ offer.type|capitalize }}</h6>
+                <div style="text-align: center;position: absolute;top: 50%; right: 0;transform: translate(0, -50%);padding: 10px 20px;font-size: 19px;line-height: 22px;">
+                    Cette offre est pourvue. Retrouvez l'étudiant<br>séléctionné dans la rubrique "MATCHS CONCLUS"
+                </div>
             </div>
         {% endfor %}
     </div>
+    <img style="float: right; clear: both; width: 35%" src="{{ asset('images/explication.png') }}">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+            crossorigin="anonymous"></script>
+    <script>
+        $('#non-provided-offers').hide();
+        $('#provided-offers').hide();
+        $('#non-provided-tab').click(function() {
+            $('#non-provided-tab').addClass('tab-active');
+            $('#non-provided-offers').show();
+            $('#provided-tab').removeClass('tab-active');
+            $('#provided-offers').hide();
+            $('#all-tab').removeClass('tab-active');
+            $('#all-offers').hide();
+        });
+        $('#provided-tab').click(function() {
+            $('#provided-tab').addClass('tab-active');
+            $('#provided-offers').show();
+            $('#non-provided-tab').removeClass('tab-active');
+            $('#non-provided-offers').hide();
+            $('#all-tab').removeClass('tab-active');
+            $('#all-offers').hide();
+        });
+        $('#all-tab').click(function() {
+            $('#non-provided-tab').removeClass('tab-active');
+            $('#non-provided-offers').hide();
+            $('#provided-tab').removeClass('tab-active');
+            $('#provided-offers').hide();
+            $('#all-tab').addClass('tab-active');
+            $('#all-offers').show();
+        });
+    </script>
 {% endblock %}

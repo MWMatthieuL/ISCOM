@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Matching;
 use App\Entity\Offer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
@@ -18,6 +19,10 @@ class MatchAndOfferController extends AbstractController
     public function offers(EntityManagerInterface $manager): Response
     {
         $user = $this->getUser();
+
+        $offers = $manager->getRepository(Offer::class)->findBy([
+            'company' => $user->getId()
+        ]);
 
         $offers = $manager->getRepository(Offer::class)->findBy([
             'company' => $user->getId()
