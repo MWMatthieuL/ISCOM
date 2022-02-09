@@ -5,6 +5,7 @@
 @import "password";
 @import "quick_user";
 @import "profile";
+@import "login";
 
 html {
   height: 100% !important;
@@ -22,6 +23,6 @@ body {
     overflow: auto;
     width: 77%;
     position: relative;
-    padding: 4em !important;
+    padding: 15vh 4em 4em;
   }
 }

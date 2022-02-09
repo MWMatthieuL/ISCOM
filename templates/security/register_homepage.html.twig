@@ -1,17 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscriptions{% endblock %}
-
 {% block body %}
-    <h1>Outil de Matching ISCOM {% if admin %}admin{% endif %}</h1>
-    <p>
-        Lorem ispum dolor sit amet, consectetur adipiscing elit. Nullam sed commodo massa.<br><br>
-        Nulla non egestas tortor, ac porttitor nunc. Nullam quis lacus eget massa venenatis viverra.
-    </p>
-    {% if admin %}
-        <a href="{{ path('app_register_student') }}" id="register" style="display: inline-block; background: #A5201E; width: 250px; padding: 15px; text-align: center; color: #fff">Identifiez vous</a>
-    {% else %}
-        <a href="{{ path('app_register_student') }}" id="register" style="display: inline-block; background: #A5201E; width: 140px; padding: 15px; text-align: center; color: #fff">Etudiant(e)s</a>
-        <a href="{{ path('app_register_company') }}" id="register" style="display: inline-block; background: #A5201E; width: 140px; padding: 15px; text-align: center; color: #fff">Entreprises</a>
-    {% endif %}
+    <style>
+        .wrapper{
+            margin: 0 !important;
+            padding: 0 !important;
+            padding-top: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+    </style>
+
+    <div id="pre_login" class="d-flex justify-content-around align-items-center h-100">
+        <div id="left" class="d-flex flex-column justify-content-between align-items-start">
+            <h1>Outils de Matching <br> ISCOM {{ admin ? "admin" : "" }}</h1>
+            <span class="my-10">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    <br>Nullam sed commodo messa. </p>
+                <p>Nulla non egestas toror, ac porttitor nunc. <br> Nullam quis lacun eget massa venenatis viverra.</p>
+            </span>
+            <span class="w-100 d-flex justify-content-between align-items-center" style="position:relative">
+                {% if admin %}
+                    <span class="btn-effect w-100">
+                        <a class="btn btn-lg btn-block btn-danger" href="{{ path('app_login') }}">Identifiez vous</a>
+                    </span>
+
+                {% else %}
+                    <span class="btn-effect">
+                        <a class="btn btn-lg btn-danger" href="{{ path('app_register_student') }}">Etudiant(e)s</a>
+                    </span>
+                    <span class="btn-effect">
+                        <a class="btn btn-lg btn-danger" href="{{ path('app_register_company') }}">Entreprises</a>
+                    </span>
+                {% endif %}
+            </span>
+        </div>
+        <img src="{{ asset('images/pre_login.png') }}" height="auto" width="60%" alt="">
+    </div>
+
+
 {% endblock %}

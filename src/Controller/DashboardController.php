@@ -16,6 +16,6 @@ class DashboardController extends AbstractController
      */
     public function companyIscom(Request $request): Response
     {
-
+        return $this->render('dashboard/admin.html.twig',['role' => 'ISCOM']);
     }
 }

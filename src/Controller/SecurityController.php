@@ -35,9 +35,21 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @Route("/pre_connexion", name="app_pre_login", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function pre_login(): Response
+    {
+        return $this->render('security/pre_login.html.twig');
+    }
+
+    /**
      * @Route("/connexion", name="app_login")
      * @Route("/connexion/{type}", name="app_login")
      * @param AuthenticationUtils $authenticationUtils
+     * @param string|null         $type
+     *
      * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils, string $type = null): Response
