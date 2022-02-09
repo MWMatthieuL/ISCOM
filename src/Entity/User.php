@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -87,20 +89,45 @@ class User implements UserInterface, \Serializable
     private $picture = null;
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * maxSize = "10M",
+     * mimeTypes = {"application/pdf", "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
+     * maxSizeMessage = "La taille maximum autorisée est de 10MB.",
+     *
+     * @Vich\UploadableField(mapping="cv_file", fileNameProperty="cvFilename")
+     * @var File|null
+     */
+    private $cvFile = null;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cvFilename = null;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $type;
 
-    public function getImageName()
-    {
-        return $this->imageName;
-    }
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $questionnary = [];
 
-    public function setImageName($imageName): self
-    {
-        $this->imageName = $imageName;
+    /**
+     * @ORM\OneToMany(targetEntity=Matching::class, mappedBy="student", orphanRemoval=true)
+     */
+    private $matchings;
 
-        return $this;
+    /**
+     * @ORM\OneToMany(targetEntity=Offer::class, mappedBy="company", orphanRemoval=true)
+     */
+    private $offers;
+
+    public function __construct()
+    {
+        $this->matchings = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -264,6 +291,36 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    public function setCvFile(?File $cv = null)
+    {
+        $this->cvFile = $cv;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($cv) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getCvFile(): ?File
+    {
+        return $this->cvFile;
+    }
+
+    public function getCvFilename(): ?string
+    {
+        return $this->cvFilename;
+    }
+
+    public function setCvFilename(?string $cvFilename): self
+    {
+        $this->cvFilename = $cvFilename;
+
+        return $this;
+    }
+
     /** @see \Serializable::serialize() */
     public function serialize()
     {
@@ -277,7 +334,11 @@ class User implements UserInterface, \Serializable
             $this->password,
             $this->companyName,
             $this->type,
-            
+            $this->picture,
+            $this->cvFilename,
+            $this->questionnary,
+            $this->matchings,
+            $this->offers,
         ]);
     }
 
@@ -293,7 +354,12 @@ class User implements UserInterface, \Serializable
             $this->roles,
             $this->password,
             $this->companyName,
-            $this->type
+            $this->type,
+            $this->picture,
+            $this->cvFilename,
+            $this->questionnary,
+            $this->matchings,
+            $this->offers,
             ) = unserialize($serialized, ['allowed_classes' => false]);
     }
 
@@ -305,6 +371,78 @@ class User implements UserInterface, \Serializable
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getQuestionnary(): ?array
+    {
+        return $this->questionnary;
+    }
+
+    public function setQuestionnary(?array $questionnary): self
+    {
+        $this->questionnary = $questionnary;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Matching[]
+     */
+    public function getMatchings(): Collection
+    {
+        return $this->matchings;
+    }
+
+    public function addMatching(Matching $matching): self
+    {
+        if (!$this->matchings->contains($matching)) {
+            $this->matchings[] = $matching;
+            $matching->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatching(Matching $matching): self
+    {
+        if ($this->matchings->removeElement($matching)) {
+            // set the owning side to null (unless already changed)
+            if ($matching->getStudent() === $this) {
+                $matching->setStudent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Offer[]
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offer $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers[] = $offer;
+            $offer->setCompany($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): self
+    {
+        if ($this->offers->removeElement($offer)) {
+            // set the owning side to null (unless already changed)
+            if ($offer->getCompany() === $this) {
+                $offer->setCompany(null);
+            }
+        }
 
         return $this;
     }
