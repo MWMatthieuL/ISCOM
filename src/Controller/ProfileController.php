@@ -21,7 +21,7 @@ class ProfileController extends AbstractController
         $form = $this->createForm(ProfileType::class, $user, ['type' => 'student']);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -31,6 +31,7 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/student.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 
@@ -45,7 +46,7 @@ class ProfileController extends AbstractController
         $form = $this->createForm(ProfileType::class, $user, ['type' => 'company']);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -69,7 +70,7 @@ class ProfileController extends AbstractController
         $form = $this->createForm(ProfileType::class, $user, ['type' => 'admin']);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -81,5 +82,4 @@ class ProfileController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 }

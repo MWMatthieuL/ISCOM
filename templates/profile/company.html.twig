@@ -3,7 +3,13 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <div id="profile">
+
+<div class="col">
+    <img link="../public/robot.png"/>
+</div>
+
+<div class="col">
+        <div id="profile">
         <h2 class="mb-2"><strong>Profil</strong></h2>
         {{ form_start(form) }}
             {{ form_row(form.lastName) }}
@@ -14,4 +20,6 @@
             </button>
         {{ form_end(form) }}
     </div>
+</div>
+
 {% endblock %}

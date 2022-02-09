@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<style>
+
+.block{
+    width:100%;
+    background-color:#a5201e;
+}
+.unblock{
+    width:100%;
+    background-color:rgb(0, 108, 155);
+}
+.btn{
+    color:white;
+}
+.element{
+    font-size: 18px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid lightgray;
+    font-weight: 600;
+}
+
+</style>
+
+<div class="container d-flex">
+    <div class="col-4">
+        <div class="element"> 
+            {{ student[0].firstname ~ " " ~ student[0].lastname }}
+        </div>
+        <div class="element">
+             {{ student[0].email}}
+        </div>
+        <div class="element">
+            Match avec 13 entreprise
+        </div>
+        <div class="element">
+            7 offres refusés
+        </div>
+        <div class="element">
+            6 offre acceptés
+        </div>
+        <div class="element">
+            1 match conclus
+        </div>
+        <div class="element">
+            Date d'inscription 02-08-21
+        </div>
+        <div class="">
+
+        </div>
+        <div >
+            <button class=" btn   unblock">
+                Debloquer
+            </button>
+        </div>
+        <div class="">
+            <button class=" btn block">
+                Bloquer
+            </button>
+        </div>
+    </div>
+
+    <div  class="col-8">
+    </div>
+
+</di>
+
+
+
+{% endblock %}
