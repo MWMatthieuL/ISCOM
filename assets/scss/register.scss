@@ -32,11 +32,6 @@
   justify-content: space-evenly;
   align-items: center;
 }
-
-#form form > div {
-  width: 100%;
-}
-
 #form input {
   width: 100%;
   padding: 2vh 1em;
@@ -45,6 +40,23 @@
   border-radius: 5px;
 }
 
+#form form div {
+  width: 100%;
+}
+
+#form form >div:last-of-type {
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: row-reverse !important;
+  align-content: center !important;
+  input {
+    width: min-content !important;
+    margin-right: 1em;
+  }
+  label{
+    margin:0 !important;
+  }
+}
 #form input::placeholder {
   color: black;
   opacity: 1;
