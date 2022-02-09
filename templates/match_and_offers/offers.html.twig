@@ -12,10 +12,17 @@
     </ul>
     <div id="all-offers">
         {% for offer in offers %}
-            <div style="width: 70%; background: {{ offer.provided ? '#A5201E' : '#006C9B'}}; color: #fff; padding: 45px 30px 40px 30px; margin-bottom: 20px; border-radius: 18px;">
+            {% set matchCount = offer.matchings.count %}
+            <div style="width: 70%; background: {{ offer.provided ? '#A5201E' : '#006C9B'}}; color: #fff; padding: 45px 30px 40px 30px; margin-bottom: 20px; border-radius: 18px; position: relative">
                 <h5 style="font-weight: bold">{{ offer.title }}</h5>
-                <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 20px"></i></h6>
-                <h6>{{ offer.type }}</h6>
+                <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 15px"></i></h6>
+                <h6>{{ offer.type|capitalize }}</h6>
+                <div style="position: absolute; right: 22px;top: 27px;padding: 18px 11px; font-weight: bold; font-size: 22px;border-radius: 9px;background: #A5201E;">Pourvue</div>
+                <div style="position: absolute; right: 0;bottom: 0;padding: 18px 11px;border-radius: 9px;background: #A5201E;">
+                    {{ matchCount }}
+                    étudiant{{ matchCount > 1 ? 's' : '' }}<br>
+                    {{ matchCount > 1 ? 'a' : 'ont' }} matché
+                </div>
             </div>
         {% endfor %}
     </div>

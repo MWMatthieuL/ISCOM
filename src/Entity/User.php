@@ -63,11 +63,6 @@ class User implements UserInterface, \Serializable
     private $companyName;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $contactName;
-
-    /**
      * @ORM\Column(type="string", length=14, nullable=true)
      */
     private $phone;
@@ -326,10 +321,10 @@ class User implements UserInterface, \Serializable
     {
         return serialize([
             $this->id,
+            $this->email,
             $this->firstName,
             $this->lastName,
             $this->phone,
-            $this->email,
             $this->roles,
             $this->password,
             $this->companyName,
