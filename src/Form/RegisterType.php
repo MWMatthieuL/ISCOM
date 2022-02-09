@@ -55,7 +55,8 @@ class RegisterType extends AbstractType
                         'image_uri' => false,
                     ])
                     ->add('conditions', CheckboxType::class, [
-                        'label' => "J'accepte les conditions générales d'utilisation",
+                        'label' => "J'accepte les <a href='/cgu'> conditions générales d'utilisation </a>",
+                        'label_html' => true,
                         'mapped' => false,
                         'required' => true,
                     ])

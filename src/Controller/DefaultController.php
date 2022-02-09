@@ -18,6 +18,15 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route("/cgu", name="cgu")
+     * @return Response
+     */
+    public function cgu(): Response
+    {
+        return $this->render('cgu.html.twig');
+    }
+
+    /**
      * @Route("/etudiant", name="default_student", methods={"GET"})
      * @return Response
      */
