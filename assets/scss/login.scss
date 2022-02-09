@@ -1,5 +1,42 @@
 #login {
+  padding: 9em;
 
+  #left {
+    height: 70%;
+    width: 50%;
+  }
+
+  form, h1 {
+    width: 80%;
+  }
+
+  form {
+    > div {
+      width: 100%;
+    }
+    input {
+      width: 100%;
+      padding: 2vh 1em;
+      background-color: #ebebeb;
+      border: none;
+      border-radius: 5px;
+      margin: 2em 0;
+    }
+    input::placeholder {
+      color: black;
+      opacity: 1;
+    }
+  }
+
+
+  h1{
+    font-weight: bold;
+  }
+  .btn {
+    background-color: #a5201e;
+    border-color: #a5201e;
+    font-weight: bold;
+  }
 }
 
 #pre_login{

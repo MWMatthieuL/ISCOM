@@ -3,28 +3,45 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    {% if type is defined %}
-        {{ type }}
-    {% endif %}
-    <div id="login">
-        <form method="post">
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+    <style>
+        .wrapper{
+            margin: 0 !important;
+            padding: 0 !important;
+            padding-top: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+    </style>
+    <div id="login" class="d-flex justify-content-center align-items-center h-100">
+        <div id="left" class="d-flex flex-column justify-content-center align-items-start">
             {% if app.user %}
                 <div>
                     <p class="mb-40">Vous etes déja connecté(e) avec l'adresse suivante :<br>{{ app.user.username }}</p>
                     <a href="{{ path('app_logout') }}" class="btn-blue btn-rounded btn-connection">Déconnexion</a>
                 </div>
             {% else %}
-                <h1>Veuillez vous identifier</h1>
-                <input placeholder="E-mail" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                <input placeholder="Mot de passe" type="password" name="password" id="inputPassword" class="form-control" required>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                <button class="btn-blue btn-rounded btn-connection" type="submit">
-                    Se connecter
-                </button>
+    
+                {% if type is defined and type == 'admin'%}
+                    <h1 class="text-center"> Admin ISCOM</h1>
+                {% else %}
+                    <h1 class="text-center"> Connexion</h1>
+                {% endif %}
+    
+                <form method="post">
+                    {% if error %}
+                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+    
+                    <input placeholder="E-mail" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                    <input placeholder="Mot de passe" type="password" name="password" id="inputPassword" class="form-control" required>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <button class="btn btn-lg btn-danger font-weight-bold" type="submit">
+                        Se connecter
+                    </button>
+                </form>
             {% endif %}
-        </form>
+        </div>
+        <img src="{{ asset('images/team.png') }}" height="100%" width="auto" alt="">
     </div>
 {% endblock %}
