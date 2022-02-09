@@ -3,19 +3,39 @@
 {% block title %}Mes offres postées{% endblock %}
 
 {% block body %}
+    <style>
+        .tabs li {
+            color: #888;
+            width: 200px;
+        }
+
+        .tab-active, #provided-tab:hover {
+            color: #A5201E !important;
+            font-weight: bold;
+            transition: 1s ease;
+        }
+
+    </style>
     <h2>Mes offres postées</h2>
-    <h5>Cliquez sur vos offres pour voir les profils d'étudiants qui ont matché avec celles-ci.</h5>
-    <ul class="tabs">
-        <li id='all-tab'>Toutes mes offres ({{ offers.count }})</li>
-        <li id='non-provided-tab'>Non pourvues ({{ nonProvidedOffers.count }})</li>
-        <li id='provided-tab'>Pourvues ({{ providedOffers.count }})</li>
+    <h5 style="color: #555555;">Cliquez sur vos offres pour voir les profils d'étudiants qui ont matché avec celles-ci.</h5>
+    <ul class="tabs" style="list-style: none; padding-left: 0; ; margin-top: 20px">
+        <li id='provided-tab' style="display: inline-block; ;"><i style="" class="bi bi-plus-circle-dotted"></i>  Ajouter une offre</li>
+        <li id='all-tab' class="tab-active" style="display: inline-block; margin-right: 40px;">Toutes mes offres ( {{ offers|length }} )</li>
+        <li id='non-provided-tab' style="display: inline-block; ;">Non pourvues ( {{ nonProvidedOffers|length }} )</li>
+        <li id='non-provided-tab' style="display: inline-block; margin-right: 40px;">Pourvues ( {{ providedOffers|length }} )</li>
     </ul>
     <div id="all-offers">
         {% for offer in offers %}
-            <div style="width: 70%; background: {{ offer.provided ? '#A5201E' : '#006C9B'}}; color: #fff; padding: 45px 30px 40px 30px; margin-bottom: 20px; border-radius: 18px;">
+            <div style="position:relative ; width: 70%; background: {{ offer.provided ? '#A5201E' : '#006C9B'}}; color: #fff; padding: 45px 30px 40px 30px; margin-bottom: 20px; border-radius: 18px;">
                 <h5 style="font-weight: bold">{{ offer.title }}</h5>
-                <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 20px"></i></h6>
-                <h6>{{ offer.type }}</h6>
+                <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 15px"></i></h6>
+                <h6>{{ offer.type|capitalize }}</h6>
+                <div style="position: absolute; right: 22px;top: 27px;padding: 18px 11px; font-weight: bold; font-size: 22px;border-radius: 9px;background: #A5201E;">Pourvue</div>
+                <div style="position: absolute;right: 0;bottom: 0;padding: 10px 35px;border-radius: 18px 0 18px 0;background: #A5201E;font-size: 19px;line-height: 22px;">
+                    {{ offer.matchings.count }}
+                    étudiant{{ offer.matchings.count > 1 ? 's' : '' }}<br>
+                    {{ offer.matchings.count > 1 ? 'a' : 'ont' }} matché
+                </div>
             </div>
         {% endfor %}
     </div>
