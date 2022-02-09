@@ -4,12 +4,48 @@
 
 {% block body %}
     <div id="profile">
+        <div id="profile_info" class="d-flex">
+            <img src="{{ asset('images/robot.png') }}" width="15%" alt="" class="mr-5">
+            <div class="d-flex flex-column">
+                <h1><strong>Bonjour {{ app.user.firstName | capitalize }} laisse moi t'informer</strong></h1>
+                <ul class="d-flex">
+                    <li>
+                        <span>
+                            <i class="bi bi-person"></i>
+                            <span class="name">Profil</span>
+                        </span>
+                        <p class="desc">Vous pouvez modifier votre profil</p>
+                    </li>
+                    <li>
+                        <span>
+                            <i class="bi bi-lock"></i>
+                            <span class="name">Mot de passe</span>
+                        </span>
+                        <p class="desc">Vous pouvez modifier votre mot de passe</p>
+                    </li>
+                    <li>
+                        <span>
+                            <i class="bi bi-building"></i>
+                            <span class="name">Entreprises</span>
+                        </span>
+                        <p class="desc">Retrouver ici toutes les entreprises, leurs offres et leurs matchs. </p>
+                    </li>
+                    <li>
+                        <span>
+                            <i class="bi bi-mortarboard"></i>
+                            <span class="name">Etudiants</span>
+                        </span>
+                        <p class="desc">Retrouvez ici tous les étudiants et leurs matchs.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <h2 class="mb-2"><strong>Profil</strong></h2>
         {{ form_start(form) }}
             {{ form_row(form.lastName) }}
             {{ form_row(form.firstName) }}
             {{ form_row(form.email) }}
-            <button class="btn btn-block btn-secondary" type="submit">
+            <button class="btn btn-block btn-lg btn-secondary" type="submit">
                 Enregistrer les modifications
             </button>
         {{ form_end(form) }}
