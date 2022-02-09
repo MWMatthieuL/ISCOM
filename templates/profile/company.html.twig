@@ -8,18 +8,16 @@
     <img link="../public/robot.png"/>
 </div>
 
-<div class="col">
-        <div id="profile">
-        <h2 class="mb-2"><strong>Profil</strong></h2>
-        {{ form_start(form) }}
-            {{ form_row(form.lastName) }}
-            {{ form_row(form.firstName) }}
-            {{ form_row(form.email) }}
-            <button class="btn btn-block btn-secondary" type="submit">
-                Enregistrer les modifications
-            </button>
-        {{ form_end(form) }}
-    </div>
+<div id="profile">
+    <h2><strong>Profil</strong></h2>
+    {{ form_start(form) }}
+    {{ form_row(form.lastName) }}
+    {{ form_row(form.firstName) }}
+    {{ form_row(form.email) }}
+    <button class="btn btn-lg btn-block btn-secondary" type="submit">
+        Enregistrer les modifications
+    </button>
+    {{ form_end(form) }}
 </div>
 
 {% endblock %}
