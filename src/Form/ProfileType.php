@@ -21,14 +21,16 @@ class ProfileType extends AbstractType
             ->add('lastName', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Nom'
+                    'placeholder' => 'Nom',
+                    'class' => 'field'
                 ],
                 'required' => true
             ])
             ->add('firstName', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Prénom'
+                    'placeholder' => 'Prénom',
+                    'class' => 'field'
                 ],
                 'required' => true
             ])
@@ -36,10 +38,10 @@ class ProfileType extends AbstractType
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Email',
+                    'class' => 'field'
                 ],
                 'required' => true,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

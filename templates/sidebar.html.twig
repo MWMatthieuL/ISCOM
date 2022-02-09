@@ -2,7 +2,13 @@
     <div id="quick-user">
         <span class="picture {{ app.user.type }}" style="background-image: url({{ asset('images/user/'~app.user.picture) }})"></span>
         <div>
-            <strong>{{ app.user.displayName }}</strong>
+            <strong>
+                {% if  app.user.companyName is defined and app.user.companyName is not null %}
+                    {{ app.user.companyName }}
+                {% else %}
+                    {{ app.user.getDisplayName() }}
+                {% endif %}
+            </strong>
             <span class="text-muted">{{ app.user.email }}</span>
         </div>
     </div>
@@ -54,10 +60,10 @@
                     <a href="{{ path('password_company') }}" class="h6">Mot de passe</a>
                 </span>
                 </li>
-                <li class="{{ app.request.get('_route') is same as "password_company"  ? 'active' : ''}}">
+                <li class="{{ app.request.get('_route') is same as "match_and_offers"  ? 'active' : ''}}">
                 <span>
                     <i class="bi bi-briefcase"></i>
-                    <a href="{{ path('password_company') }}" class="h6">Mes offres et matchs</a>
+                    <a href="{{ path('match_and_offers') }}" class="h6">Mes offres et matchs</a>
                 </span>
                 </li>
                 <li class="{{ app.request.get('_route') is same as "password_company"  ? 'active' : ''}}">

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes offres postées{% endblock %}
+
+{% block body %}
+    <h2>Mes offres postées</h2>
+    <h5>Cliquez sur vos offres pour voir les profils d'étudiants qui ont matché avec celles-ci.</h5>
+    <ul class="tabs">
+        <li id='all-tab'>Toutes mes offres ({{ offers.count }})</li>
+        <li id='non-provided-tab'>Non pourvues ({{ nonProvidedOffers.count }})</li>
+        <li id='provided-tab'>Pourvues ({{ providedOffers.count }})</li>
+    </ul>
+    <div id="all-offers">
+        {% for offer in offers %}
+            <div style="width: 70%; background: {{ offer.provided ? '#A5201E' : '#006C9B'}}; color: #fff; padding: 45px 30px 40px 30px; margin-bottom: 20px; border-radius: 18px;">
+                <h5 style="font-weight: bold">{{ offer.title }}</h5>
+                <h6 style="margin: 1.2rem 0">Offre publiée le {{ offer.publishedAt|date("d-m-Y") }} <i class="bi bi-clock" style="margin-left: 20px"></i></h6>
+                <h6>{{ offer.type }}</h6>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="non-provided-offers">
+        {% for offer in nonProvidedOffers %}
+            <div style="width: 70%; background: #006C9B; color: #fff; padding: 20px; margin-bottom: 20px">
+                <h5>{{ offer.title }}</h5>
+                <h6>Offre publiée le {{ offer.publishedAt|date("d-m-Y") }}</h6>
+                <h6>{{ offer.type|capitalize }}</h6>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="provided-offers">
+        {% for offer in providedOffers %}
+            <div style="width: 70%; background: #A5201E; color: #fff; padding: 20px; margin-bottom: 20px; ">
+                <h5>{{ offer.title }}</h5>
+                <h6>Offre publiée le {{ offer.publishedAt|date("d-m-Y") }}</h6>
+                <h6>{{ offer.type }}</h6>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
