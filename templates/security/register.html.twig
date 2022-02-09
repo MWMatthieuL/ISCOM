@@ -3,6 +3,15 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
+    <style>
+        .wrapper{
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+    </style>
     <div id="register">
         <div id="form">
             {% if type == 'student' %}
@@ -40,14 +49,12 @@
                 {% if form.conditions is defined %}
                     {{ form_row(form.conditions) }}
                 {% endif %}
-                <button class="" type="submit">
+                <button class="btn btn-lg btn-danger font-weight-bold" type="submit">
                     Créer mon compte
                 </button>
                 {{ form_end(form) }}
             {% endif %}
         </div>
-        <div>
-            <img src="{{ asset("images/team.png") }}" alt=""/>
-        </div>
+        <img src="{{ asset("images/team.png") }}" alt=""/>
     </div>
 {% endblock %}

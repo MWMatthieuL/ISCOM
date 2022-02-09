@@ -1,0 +1,29 @@
+#login {
+
+}
+
+#pre_login{
+  padding: 9em;
+
+  #left {
+    height: 70%;
+  }
+
+  h1{
+    font-weight: bold;
+  }
+
+  .btn-effect {
+
+    border: 5px solid black;
+
+    .btn {
+      z-index: 9999;
+      background-color: #a5201e;
+      padding: 1em 1.5em;
+      border-radius: 0;
+      font-weight: bold;
+      transform: translate(-17px, -17px)
+    }
+  }
+}

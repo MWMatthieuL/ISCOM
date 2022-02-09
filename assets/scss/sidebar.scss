@@ -10,7 +10,7 @@
   padding: 0;
 
   .active {
-    background-color: #f8f8f8 !important;
+    background-image: linear-gradient(to right, #f8f8f8, white) !important;
     a {
       color: #a5201e !important;
     }
@@ -45,7 +45,7 @@
     }
 
     &:hover {
-      background-color: #f8f8f8;
+      background-image: linear-gradient(to right, #f8f8f8, white) !important;
     }
   }
 }
