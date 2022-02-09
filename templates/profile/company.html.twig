@@ -4,13 +4,76 @@
 
 {% block body %}
 
-<div class="col">
-    <img link="../public/robot.png"/>
+<style>
+    .field{
+        margin-bottom:15px;
+    }
+    .robot{
+        width:18%;
+    }
+    .top-menu{
+       margin-left:32px;
+    }
+    .container-menu{
+    }
+    .top-menu-item{
+        height:165px;
+        background-color:rgb(249,249,249);
+       
+    }
+    .profil{
+        margin-top:50px;
+        margin-bottom:35px;
+        font-size:18px;
+    }
+    .title{
+        margin-left: 22%;
+    }
+    i{
+        color:rgb(186,85,83);
+        font-size: 34px;
+    }
+</style>
+<h4 class="title">Bonjour {{user.firstName}} laissez moi vous informer</h4>
+<div class="col-12 justify-content-between d-flex container-menu">
+  
+        <img src="{{ asset('images/robot.png') }}" class="robot">
+    <div class="row top-menu align-self-end">
+        <div class="col top-menu-item">
+            <div class="row justify-content-around">
+                <i class="bi bi-person"></i>
+                <p style="padding-top: 15px;"> Profil</p>
+            </div>
+                <p>Vous pouvez modifier votre profil</p>       
+        </div>
+         <div class="col top-menu-item">
+            <div class="row justify-content-around">
+                <i class="bi bi-lock"></i>
+                <p style="padding-top: 15px;"> Mot de passe</p>
+            </div>
+                <p>Vous pouvez modifier votre mot de passe</p>       
+        </div>
+         <div class="col top-menu-item">
+            <div class="row justify-content-around">
+                <i class="bi bi-building"></i>
+                <p style="padding-top: 15px;">Mes offres et matchs</p>
+            </div>
+                <p>Retrouvez ici vos offres et les matchs étudiants correspondant.</p>       
+        </div>
+         <div class="col top-menu-item">
+            <div class="row justify-content-around">
+                <i class="bi bi-mortarboard"></i>
+                <p style="padding-top: 15px;"> Match conclus</p>
+            </div>
+                <p>
+                Retrouvez dans cette rubrique l'ensemble de vos match conclues toute offre confondue</p>       
+        </div>
+    </div>
 </div>
 
 <div class="col">
         <div id="profile">
-        <h2 class="mb-2"><strong>Profil</strong></h2>
+        <h2 class="profil"><strong>Profil</strong></h2>
         {{ form_start(form) }}
             {{ form_row(form.lastName) }}
             {{ form_row(form.firstName) }}
