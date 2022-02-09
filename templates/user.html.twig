@@ -13,15 +13,15 @@
         </li>
         <li>
             <i class="bi bi-person"></i>
-            <a href="{{ path('app_logout') }}" class="h6">Compte</a>
+            <a href="{{ path('profile_' ~  app.user.type | replace({'admin': 'iscom'})) }}" class="h6">Compte</a>
         </li>
         <li>
             <i class="bi bi-question-octagon"></i>
-            <a href="{{ path('app_logout') }}" class="h6">Aide</a>
+            <a href="{{ path('help') }}" class="h6">Aide</a>
         </li>
         <li>
             <i class="bi bi-file-earmark-medical"></i>
-            <a href="{{ path('app_logout') }}" class="h6">Condition d'utilisation</a>
+            <a href="{{ path('cgu') }}" class="h6">Condition d'utilisation</a>
         </li>
         <li>
             <i class="bi bi-bar-chart-line"></i>

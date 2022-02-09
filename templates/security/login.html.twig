@@ -7,7 +7,6 @@
         .wrapper{
             margin: 0 !important;
             padding: 0 !important;
-            padding-top: 0 !important;
             width: 100% !important;
             height: 100% !important;
             overflow: hidden !important;
@@ -25,7 +24,7 @@
                 {% if type is defined and type == 'admin'%}
                     <h1 class="text-center"> Admin ISCOM</h1>
                 {% else %}
-                    <h1 class="text-center"> Connexion {{ type is defined ? type : "" }}</h1>
+                    <h1 class="text-center"> Connexion {{ type is defined ? type | capitalize : "" }}</h1>
                 {% endif %}
     
                 <form method="post">
@@ -42,7 +41,12 @@
                 </form>
                 <a class="my-2" href="{{ path('app_register_homepage') }}" style="color:#006c9b"> S'inscrire</a>
             {% endif %}
+            {% if type is defined %}
+                {% set img = type is same as "iscom" ? "login.png" : type is same as "entreprise" ? "puzzle.png" : "team.png" %}
+            {% else %}
+                {%  set img = "team.png" %}
+            {% endif %}
         </div>
-        <img src="{{ asset('images/team.png') }}" height="100%" width="auto" alt="">
+        <img src="{{ asset('images/' ~ img) }}" height="100%" width="auto" alt="">
     </div>
 {% endblock %}
