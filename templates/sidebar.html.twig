@@ -1,6 +1,20 @@
 <div id="sidebar">
     <div id="quick-user">
-        <span class="picture {{ app.user.type }}" style="background-image: url({{ asset('images/user/'~app.user.picture) }})"></span>
+        {% if app.user.type == 'company' %}
+            <span class="picture {{ app.user.type }}" style="background-image: url({{ asset('images/user/'~app.user.picture) }})"></span>
+        {% else %}
+            <span style="
+    font-weight: bold;
+    background: #A5201E;
+    width: 115px;
+    height: 115px;
+    text-align: center;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 55px;
+    line-height: 115px;
+">{{ app.user.firstname|first }}{{ app.user.lastname|first }}</span>
+        {% endif %}
         <div>
             <strong>
                 {% if  app.user.companyName is defined and app.user.companyName is not null %}
