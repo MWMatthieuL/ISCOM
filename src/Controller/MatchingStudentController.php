@@ -50,6 +50,7 @@ class MatchingStudentController extends AbstractController
      * @param int                    $id
      * @param string                 $status
      *
+     * @return mixed
      */
     public function set_status_match(EntityManagerInterface $manager, int $id, string $status)
     {

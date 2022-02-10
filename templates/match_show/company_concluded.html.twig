@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes matchs conclus{% endblock %}
+
+{% block body %}
+    <style>
+        #company_concluded{
+            width: 100%;
+            height: 100%;
+        }
+        #company_concluded > div {
+            background-color: #ebebeb;
+            border-radius: 5px;
+            height: 100px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 12px -1px #e2e2e2 ;
+        }
+        #company_concluded > div > span {
+            text-align: center;
+            width:200px;
+        }
+
+        #company_concluded > div > strong {
+            width:200px;
+        }
+
+        #company_concluded > div > img {
+            width:100px;
+            height:100%;
+        }
+
+        #company_concluded .btn {
+            background-color: #006c9b;
+            border-color: #006c9b;
+            border-radius: 20px;
+            margin-right: 1em;
+            width: 75px;
+            height:75px;
+            font-weight: bold;
+            cursor: default;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #company_concluded .btn-accepted, #company_concluded .btn-accept {
+            background-color: #069b00;
+            border-color: #069b00;
+        }
+        #company_concluded .btn-rejected , #company_concluded .btn-reject {
+            background-color: #a5201e;
+            border-color: #a5201e;
+        }
+        #company_concluded .btn-disabled{
+            background-color: #948999;
+            border-color: #948999;
+
+        } #company_concluded .btn-other{
+            width: 200px;
+            background-color: #006c9b;
+            border-color: #006c9b;
+        }
+    </style>
+    <div id="company_concluded">
+        <h2 class="mb-3">Matchs conclus</h2>
+        <h6 class="mb-5">Vous trouverez ici le résumé de vos matchs conclus, toute offre confondue.</h6>
+        {% for match in matches_concluded %}
+            <div class="mb-4 d-flex flex-row justify-content-between align-items-center">
+                <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
+                <span>match à {{ match.percentage | round(1, "floor") }} %</span>
+                <span>{{ match.student.displayName }}</span>
+                <strong>{{ match.offer.title }}</strong>
+                <div class="d-flex">
+                    {% if match.concludedByCompany is same as true %}
+                        <button class="btn btn-success btn-accepted" disabled>OUI</button>
+                        <button class="btn btn-danger btn-disabled" disabled>NON</button>
+                    {% elseif match.concludedByCompany is same as false %}
+                        <button class="btn btn-success btn-disabled" disabled>OUI</button>
+                        <button class="btn btn-danger btn-rejected" disabled>NON</button>
+                    {% else %}
+                        <button value="{{ match.id }}" class="btn btn-success btn-accept">OUI</button>
+                        <button value="{{ match.id }}" class="btn btn-danger btn-reject">NON</button>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    <script>
+        Array.from(document.getElementsByClassName('btn-accept')).forEach(function(element) {
+            element.addEventListener('click', e => {
+                setConclude(element.value, 1).then(()=>{
+                    location.reload(true);
+                });
+                e.preventDefault();
+            });
+        });
+        Array.from(document.getElementsByClassName('btn-reject')).forEach(function(element) {
+            element.addEventListener('click',e => {
+                setConclude(element.value, 0).then(()=>{
+                    location.reload(true);
+                });
+                e.preventDefault();
+            });
+        });
+        async function setConclude(id, status) {
+            await fetch( `/entreprise/match/${id}/${status}`, {method: 'POST'});
+        }
+    </script>
+{% endblock %}
