@@ -138,8 +138,6 @@
 </div>
 <div id="accepted" class="tab" style="display: none">
     {% for match in matches_accepted  %}
-        {{ dump(match) }}
-
         <div class="mb-4 d-flex flex-row justify-content-between align-items-center">
             <img src="{{ match.offer.company.picture ? asset(match.offer.company.picture) : "" }}" alt="">
             <span>{{ match.offer.company.displayName }}</span>
@@ -161,7 +159,6 @@
             <span>{{ match.offer.company.displayName }}</span>
             <span>Votre profil à matché à {{ match.percentage | round(1, 'floor') }} %</span>
             <div>
-                {{ dump(match) }}
                 {% if match.offer.filename is not null %}
                     <a href="/etudiant/match/{{ match.id }}/offer" class="btn btn-primary">Voir l'offre</a>
                 {% elseif match.offer.link is not null %}

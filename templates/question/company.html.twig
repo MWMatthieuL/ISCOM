@@ -21,6 +21,11 @@
             color: #000;
         }
 
+        label[for='offer_offerFile_file'] {
+            padding: 10px 25px;
+            line-height: 45px;
+        }
+
         input[type="checkbox"]:disabled + label {
             color: #888;
         }
@@ -136,7 +141,7 @@ position: -webkit-sticky;
         {{ form_start(form) }}
             <h2 style="font-weight: bold; margin-top: 80px; margin-bottom: 20px;">Intitulé de votre offre</h2>
             {{ form_row(form.title) }}
-            <label id="offer_file" for="offer_offerFile_file">Chargez votre offre au format PDF (recommandé)</label>
+            <label id="offer_file" for="offer_offerFile_file">Chargez votre offre au format PDF (recommandé)<i style="float: right; color: #A5201E; font-size: 30px" class="bi bi-download"></i></label>
             {{ form_row(form.offerFile) }}
             <p style="font-weight: bold; margin: -10px 10px 10px 25px">Ou</p>
             {{ form_row(form.link) }}
@@ -203,7 +208,7 @@ position: -webkit-sticky;
 
     $(document).on('change', '#offer_offerFile_file',function() {
             let $filename = $( "#offer_offerFile_file" ).get(0).files[0].name;
-            $('#offer_file').text($filename);
+            $('#offer_file').html($filename + '<i style="float: right; color: #A5201E; font-size: 30px" class="bi bi-download"></i>');
     });
 
     </script>
