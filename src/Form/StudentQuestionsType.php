@@ -36,7 +36,7 @@ class StudentQuestionsType extends AbstractType
                 'multiple' => 'true',
                 'required' => true,
                 //                'mapped' => false,
-                'label' => 'Type de structure recherche',
+                'label' => false,
             ])
             ->add('sector', ChoiceType::class, [
                 'choices' => [
@@ -70,7 +70,7 @@ class StudentQuestionsType extends AbstractType
                 'multiple' => 'true',
                 'required' => true,
                 //                'mapped' => false,
-                'label' => 'Secteurs recherchées',
+                'label' => false,
             ])
             ->add('mainSkills', ChoiceType::class, [
                 'choices' => [
@@ -93,7 +93,7 @@ class StudentQuestionsType extends AbstractType
                 'multiple' => 'true',
                 'required' => true,
                 //                'mapped' => false,
-                'label' => 'Les principales compétences recherchées pour le poste',
+                'label' => false,
             ])
             ->add('softSkills', ChoiceType::class, [
                 'choices' => [
@@ -114,9 +114,10 @@ class StudentQuestionsType extends AbstractType
                 'multiple' => 'true',
                 'required' => true,
                 //                'mapped' => false,
-                'label' => 'Les principales soft skills recherchés pour le poste',
+                'label' => false,
             ])
             ->add('places', ChoiceType::class, [
+                'placeholder' => 'Selection parmi les departements français',
                 'choices' => [
                     "Ain" => "01",
                     "Aisne" => "02",
@@ -265,7 +266,7 @@ class StudentQuestionsType extends AbstractType
                 'multiple' => 'true',
                 'required' => true,
                 //                'mapped' => false,
-                'label' => 'Les principales soft skills recherchés pour le poste',
+                'label' => false,
             ])
             ->add('period', ChoiceType::class, [
                 'choices' => [
@@ -292,10 +293,10 @@ class StudentQuestionsType extends AbstractType
                 'multiple' => 'true',
                 'required' => true,
                 //                'mapped' => false,
-                'label' => 'Les principales soft skills recherchés pour le poste',
+                'label' => false,
             ])
             ->add('cvFile', VichFileType::class, [
-                'label' => 'Votre CV',
+                'label' => false,
                 'required' => false,
                 'allow_delete' => true,
                 'delete_label' => 'Supprimer',

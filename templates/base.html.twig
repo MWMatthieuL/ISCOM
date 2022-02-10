@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-overflow">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     {% endblock %}
 </head>
-    <body>
+    <body class="body-flex">
         {% if app.user.type is defined %}
             {% include 'sidebar.html.twig' %}
         {% endif %}

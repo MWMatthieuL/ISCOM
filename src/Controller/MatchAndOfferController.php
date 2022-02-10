@@ -24,10 +24,6 @@ class MatchAndOfferController extends AbstractController
             'company' => $user->getId()
         ]);
 
-        $offers = $manager->getRepository(Offer::class)->findBy([
-            'company' => $user->getId()
-        ]);
-
         $providedOffers = $manager->getRepository(Offer::class)->findBy([
             'company' => $user->getId(),
             'provided' => true,
