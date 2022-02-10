@@ -21,21 +21,33 @@ final class UserFixtures extends Fixture
 
     public function generateFirstName(): string
     {
-        $firstnames = ['Jade','Louise','Emma','Alice','Ambre','Lina','Rose','Chloé','Mia','Léa','Anna','Mila','Julia','Romy','Lou','Inès','Léna','Agathe','Juliette','Inaya','Nina','Zoé','Léonie','Jeanne','Iris','Éva','Charlie','Lola','Adèle','Victoire','Manon','Luna','Camille','Romane','Lucie','Margaux','Olivia','Victoria','Alix','Louna','Mya','Sofia','Charlotte','Sarah','Giulia','Lya','Margot','Nour','Lyana','Capucine','Clémence','Théa','Éléna','Alba','Emy','Clara','Lana','Aya','Lyna','Yasmine','Gabrielle','Alya','Alicia','Roxane','Zélie','Lise','Lily','Léana','Maya','Mathilde','Livia','Valentine','Anaïs','Apolline','Thaïs','Lila','Maëlys','Assia','Héloïse','Ava','Joy','Alma','Lilou','Maria','Constance','Élise','Maëlle','Célia','Marie','Ella','Amelia','Elsa','Lisa','Noémie','Salomé','Emmy','Céleste','Albane','Soline','Nora','Léo','Gabriel','Raphaël','Arthur','Louis','Jules','Adam','Maël','Lucas','Hugo','Noah','Liam','Gabin','Sacha','Paul','Nathan','Aaron','Mohamed','Ethan','Tom','Éden','Léon','Noé','Tiago','Théo','Isaac','Marius','Victor','Ayden','Martin','Naël','Mathis','Axel','Robin','Timéo','Enzo','Marceau','Valentin','Nino','Eliott','Nolan','Malo','Milo','Antoine','Samuel','Augustin','Amir','Lyam','Rayan','Yanis','Ibrahim','Gaspard','Sohan','Clément','Mathéo','Simon','Baptiste','Maxence','Imran','Kaïs','Côme','Soan','Évan','Maxime','Camille','Alexandre','Owen','Ismaël','Lenny','Pablo','Léandre','Naïm','Ilyan','Thomas','Joseph','Oscar','Elio','Noa','Malone','Diego','Noam','Livio','Charlie','Charly','Basile','Milan','Ilyes','Ali','Anas','Logan','Mathys','Alessio','William','Timothée','Auguste','Ayoub','Adem','Wassim','Youssef','Marin'] ;
+        $firstnames = ['Jade', 'Louise', 'Emma', 'Alice', 'Ambre', 'Lina', 'Rose', 'Chloé', 'Mia', 'Léa', 'Anna', 'Mila', 'Julia', 'Romy', 'Lou', 'Inès', 'Léna', 'Agathe', 'Juliette', 'Inaya', 'Nina', 'Zoé', 'Léonie', 'Jeanne', 'Iris', 'Éva', 'Charlie', 'Lola', 'Adèle', 'Victoire', 'Manon', 'Luna', 'Camille', 'Romane', 'Lucie', 'Margaux', 'Olivia', 'Victoria', 'Alix', 'Louna', 'Mya', 'Sofia', 'Charlotte', 'Sarah', 'Giulia', 'Lya', 'Margot', 'Nour', 'Lyana', 'Capucine', 'Clémence', 'Théa', 'Éléna', 'Alba', 'Emy', 'Clara', 'Lana', 'Aya', 'Lyna', 'Yasmine', 'Gabrielle', 'Alya', 'Alicia', 'Roxane', 'Zélie', 'Lise', 'Lily', 'Léana', 'Maya', 'Mathilde', 'Livia', 'Valentine', 'Anaïs', 'Apolline', 'Thaïs', 'Lila', 'Maëlys', 'Assia', 'Héloïse', 'Ava', 'Joy', 'Alma', 'Lilou', 'Maria', 'Constance', 'Élise', 'Maëlle', 'Célia', 'Marie', 'Ella', 'Amelia', 'Elsa', 'Lisa', 'Noémie', 'Salomé', 'Emmy', 'Céleste', 'Albane', 'Soline', 'Nora', 'Léo', 'Gabriel', 'Raphaël', 'Arthur', 'Louis', 'Jules', 'Adam', 'Maël', 'Lucas', 'Hugo', 'Noah', 'Liam', 'Gabin', 'Sacha', 'Paul', 'Nathan', 'Aaron', 'Mohamed', 'Ethan', 'Tom', 'Éden', 'Léon', 'Noé', 'Tiago', 'Théo', 'Isaac', 'Marius', 'Victor', 'Ayden', 'Martin', 'Naël', 'Mathis', 'Axel', 'Robin', 'Timéo', 'Enzo', 'Marceau', 'Valentin', 'Nino', 'Eliott', 'Nolan', 'Malo', 'Milo', 'Antoine', 'Samuel', 'Augustin', 'Amir', 'Lyam', 'Rayan', 'Yanis', 'Ibrahim', 'Gaspard', 'Sohan', 'Clément', 'Mathéo', 'Simon', 'Baptiste', 'Maxence', 'Imran', 'Kaïs', 'Côme', 'Soan', 'Évan', 'Maxime', 'Camille', 'Alexandre', 'Owen', 'Ismaël', 'Lenny', 'Pablo', 'Léandre', 'Naïm', 'Ilyan', 'Thomas', 'Joseph', 'Oscar', 'Elio', 'Noa', 'Malone', 'Diego', 'Noam', 'Livio', 'Charlie', 'Charly', 'Basile', 'Milan', 'Ilyes', 'Ali', 'Anas', 'Logan', 'Mathys', 'Alessio', 'William', 'Timothée', 'Auguste', 'Ayoub', 'Adem', 'Wassim', 'Youssef', 'Marin'];
         return $firstnames[array_rand($firstnames)];
+    }
+
+    public function generatePicStudent(): string
+    {
+        $rand = mt_rand(0, 55);
+        return "photo/" . $rand . '.png';
+    }
+
+    public function generatePictureCompany(): string
+    {
+        $rand = mt_rand(0, 26);
+        return "brand/" . $rand . '.png';
     }
 
     public function generateLastName(): string
     {
-        $lastnames = ['Martin','Bernard','Thomas','Petit','Robert','Richar','Duran','Duboi','Morea','Lauren','Simo','Miche','Lefebvr','Lero','Rou','Davi','Bertran','More','Fournie','Girar','Bonne','Dupon','Lamber','Fontain','Roussea','Vincen','Mulle','Lefevr','Faur','Andr','Mercie','Blan','Gueri','Boye','Garnie','Chevalie','Francoi','Legran','Gauthie','Garci','Perri','Robi','Clemen','Mori','Nicola','Henr','Rousse','Mathie','Gautie','Masso','Marchan','Duva','Deni','Dumon','Mari','Lemair','Noe','Meye','Dufou','Meunie','Bru','Blanchar','Girau','Jol','Rivier','Luca','Brune','Gaillar','Barbie','Arnau','Martine','Gerar','Roch','Renar','Schmit','Ro','Lerou','Coli','Vida','Caro','Picar','Roge','Fabr','Auber','Lemoin','Renau','Duma','Lacroi','Olivie','Philipp','Bourgeoi','Pierr','Benoi','Re','Lecler','Paye','Rollan','Leclerc','Guillaum','Lecomt','Lope','Jea','Dupu','Guillo','Huber','Berge','Carpentie','Sanche','Dupui','Mouli','Loui','Deschamp','Hue','Vasseu','Pere','Bouche','Fleur','Roye','Klei','Jacque','Ada','Pari','Poirie','Mart','Aubr','Guyo','Carr','Charle','Renaul','Charpentie','Menar','Maillar','Baro','Berti','Baill','Herv','Schneide','Fernande','Le Gal','Colle','Lege','Bouvie','Julie','Prevos','Mille','Perro','Danie','Le Rou','Cousi','Germai','Breto','Besso','Langloi','Rem','Le Gof','Pelletie','Levequ','Perrie','Leblan','Barr','Lebru','Marcha','Webe','Malle','Hamo','Boulange','Jaco','Monnie','Michau','Rodrigue','Guichar','Gille','Etienn','Grondi','Poulai','Tessie','Chevallie','Colli','Chauvi','Da Silv','Bouche','Ga','Lemaitr','Benar','Marecha','Humber','Reynau','Antoin','Hoara','Perre','Barthelem','Cordie','Picho','Lejeun','Gilber','Lam','Delauna','Pasquie','Carlie','Laporte'];
+        $lastnames = ['Martin', 'Bernard', 'Thomas', 'Petit', 'Robert', 'Richar', 'Duran', 'Duboi', 'Morea', 'Lauren', 'Simo', 'Miche', 'Lefebvr', 'Lero', 'Rou', 'Davi', 'Bertran', 'More', 'Fournie', 'Girar', 'Bonne', 'Dupon', 'Lamber', 'Fontain', 'Roussea', 'Vincen', 'Mulle', 'Lefevr', 'Faur', 'Andr', 'Mercie', 'Blan', 'Gueri', 'Boye', 'Garnie', 'Chevalie', 'Francoi', 'Legran', 'Gauthie', 'Garci', 'Perri', 'Robi', 'Clemen', 'Mori', 'Nicola', 'Henr', 'Rousse', 'Mathie', 'Gautie', 'Masso', 'Marchan', 'Duva', 'Deni', 'Dumon', 'Mari', 'Lemair', 'Noe', 'Meye', 'Dufou', 'Meunie', 'Bru', 'Blanchar', 'Girau', 'Jol', 'Rivier', 'Luca', 'Brune', 'Gaillar', 'Barbie', 'Arnau', 'Martine', 'Gerar', 'Roch', 'Renar', 'Schmit', 'Ro', 'Lerou', 'Coli', 'Vida', 'Caro', 'Picar', 'Roge', 'Fabr', 'Auber', 'Lemoin', 'Renau', 'Duma', 'Lacroi', 'Olivie', 'Philipp', 'Bourgeoi', 'Pierr', 'Benoi', 'Re', 'Lecler', 'Paye', 'Rollan', 'Leclerc', 'Guillaum', 'Lecomt', 'Lope', 'Jea', 'Dupu', 'Guillo', 'Huber', 'Berge', 'Carpentie', 'Sanche', 'Dupui', 'Mouli', 'Loui', 'Deschamp', 'Hue', 'Vasseu', 'Pere', 'Bouche', 'Fleur', 'Roye', 'Klei', 'Jacque', 'Ada', 'Pari', 'Poirie', 'Mart', 'Aubr', 'Guyo', 'Carr', 'Charle', 'Renaul', 'Charpentie', 'Menar', 'Maillar', 'Baro', 'Berti', 'Baill', 'Herv', 'Schneide', 'Fernande', 'Le Gal', 'Colle', 'Lege', 'Bouvie', 'Julie', 'Prevos', 'Mille', 'Perro', 'Danie', 'Le Rou', 'Cousi', 'Germai', 'Breto', 'Besso', 'Langloi', 'Rem', 'Le Gof', 'Pelletie', 'Levequ', 'Perrie', 'Leblan', 'Barr', 'Lebru', 'Marcha', 'Webe', 'Malle', 'Hamo', 'Boulange', 'Jaco', 'Monnie', 'Michau', 'Rodrigue', 'Guichar', 'Gille', 'Etienn', 'Grondi', 'Poulai', 'Tessie', 'Chevallie', 'Colli', 'Chauvi', 'Da Silv', 'Bouche', 'Ga', 'Lemaitr', 'Benar', 'Marecha', 'Humber', 'Reynau', 'Antoin', 'Hoara', 'Perre', 'Barthelem', 'Cordie', 'Picho', 'Lejeun', 'Gilber', 'Lam', 'Delauna', 'Pasquie', 'Carlie', 'Laporte'];
         return $lastnames[array_rand($lastnames)];
     }
 
     public function generateCompanyName(): string
     {
-        $firstnames = ['Jade','Louise','Emma','Alice','Ambre','Lina','Rose','Chloé','Mia','Léa','Anna','Mila','Julia','Romy','Lou','Inès','Léna','Agathe','Juliette','Inaya','Nina','Zoé','Léonie','Jeanne','Iris','Éva','Charlie','Lola','Adèle','Victoire','Manon','Luna','Camille','Romane','Lucie','Margaux','Olivia','Victoria','Alix','Louna','Mya','Sofia','Charlotte','Sarah','Giulia','Lya','Margot','Nour','Lyana','Capucine','Clémence','Théa','Éléna','Alba','Emy','Clara','Lana','Aya','Lyna','Yasmine','Gabrielle','Alya','Alicia','Roxane','Zélie','Lise','Lily','Léana','Maya','Mathilde','Livia','Valentine','Anaïs','Apolline','Thaïs','Lila','Maëlys','Assia','Héloïse','Ava','Joy','Alma','Lilou','Maria','Constance','Élise','Maëlle','Célia','Marie','Ella','Amelia','Elsa','Lisa','Noémie','Salomé','Emmy','Céleste','Albane','Soline','Nora','Léo','Gabriel','Raphaël','Arthur','Louis','Jules','Adam','Maël','Lucas','Hugo','Noah','Liam','Gabin','Sacha','Paul','Nathan','Aaron','Mohamed','Ethan','Tom','Éden','Léon','Noé','Tiago','Théo','Isaac','Marius','Victor','Ayden','Martin','Naël','Mathis','Axel','Robin','Timéo','Enzo','Marceau','Valentin','Nino','Eliott','Nolan','Malo','Milo','Antoine','Samuel','Augustin','Amir','Lyam','Rayan','Yanis','Ibrahim','Gaspard','Sohan','Clément','Mathéo','Simon','Baptiste','Maxence','Imran','Kaïs','Côme','Soan','Évan','Maxime','Camille','Alexandre','Owen','Ismaël','Lenny','Pablo','Léandre','Naïm','Ilyan','Thomas','Joseph','Oscar','Elio','Noa','Malone','Diego','Noam','Livio','Charlie','Charly','Basile','Milan','Ilyes','Ali','Anas','Logan','Mathys','Alessio','William','Timothée','Auguste','Ayoub','Adem','Wassim','Youssef','Marin'] ;
-        $lastnames = ['Martin','Bernard','Thomas','Petit','Robert','Richar','Duran','Duboi','Morea','Lauren','Simo','Miche','Lefebvr','Lero','Rou','Davi','Bertran','More','Fournie','Girar','Bonne','Dupon','Lamber','Fontain','Roussea','Vincen','Mulle','Lefevr','Faur','Andr','Mercie','Blan','Gueri','Boye','Garnie','Chevalie','Francoi','Legran','Gauthie','Garci','Perri','Robi','Clemen','Mori','Nicola','Henr','Rousse','Mathie','Gautie','Masso','Marchan','Duva','Deni','Dumon','Mari','Lemair','Noe','Meye','Dufou','Meunie','Bru','Blanchar','Girau','Jol','Rivier','Luca','Brune','Gaillar','Barbie','Arnau','Martine','Gerar','Roch','Renar','Schmit','Ro','Lerou','Coli','Vida','Caro','Picar','Roge','Fabr','Auber','Lemoin','Renau','Duma','Lacroi','Olivie','Philipp','Bourgeoi','Pierr','Benoi','Re','Lecler','Paye','Rollan','Leclerc','Guillaum','Lecomt','Lope','Jea','Dupu','Guillo','Huber','Berge','Carpentie','Sanche','Dupui','Mouli','Loui','Deschamp','Hue','Vasseu','Pere','Bouche','Fleur','Roye','Klei','Jacque','Ada','Pari','Poirie','Mart','Aubr','Guyo','Carr','Charle','Renaul','Charpentie','Menar','Maillar','Baro','Berti','Baill','Herv','Schneide','Fernande','Le Gal','Colle','Lege','Bouvie','Julie','Prevos','Mille','Perro','Danie','Le Rou','Cousi','Germai','Breto','Besso','Langloi','Rem','Le Gof','Pelletie','Levequ','Perrie','Leblan','Barr','Lebru','Marcha','Webe','Malle','Hamo','Boulange','Jaco','Monnie','Michau','Rodrigue','Guichar','Gille','Etienn','Grondi','Poulai','Tessie','Chevallie','Colli','Chauvi','Da Silv','Bouche','Ga','Lemaitr','Benar','Marecha','Humber','Reynau','Antoin','Hoara','Perre','Barthelem','Cordie','Picho','Lejeun','Gilber','Lam','Delauna','Pasquie','Carlie','Laporte'];
-        $suffixes = [' Tech',' Corp',' Inc',' Solutions',' SARL','power',' Services','works',' digital','tion',' Lux','','',''];
+        $firstnames = ['Jade', 'Louise', 'Emma', 'Alice', 'Ambre', 'Lina', 'Rose', 'Chloé', 'Mia', 'Léa', 'Anna', 'Mila', 'Julia', 'Romy', 'Lou', 'Inès', 'Léna', 'Agathe', 'Juliette', 'Inaya', 'Nina', 'Zoé', 'Léonie', 'Jeanne', 'Iris', 'Éva', 'Charlie', 'Lola', 'Adèle', 'Victoire', 'Manon', 'Luna', 'Camille', 'Romane', 'Lucie', 'Margaux', 'Olivia', 'Victoria', 'Alix', 'Louna', 'Mya', 'Sofia', 'Charlotte', 'Sarah', 'Giulia', 'Lya', 'Margot', 'Nour', 'Lyana', 'Capucine', 'Clémence', 'Théa', 'Éléna', 'Alba', 'Emy', 'Clara', 'Lana', 'Aya', 'Lyna', 'Yasmine', 'Gabrielle', 'Alya', 'Alicia', 'Roxane', 'Zélie', 'Lise', 'Lily', 'Léana', 'Maya', 'Mathilde', 'Livia', 'Valentine', 'Anaïs', 'Apolline', 'Thaïs', 'Lila', 'Maëlys', 'Assia', 'Héloïse', 'Ava', 'Joy', 'Alma', 'Lilou', 'Maria', 'Constance', 'Élise', 'Maëlle', 'Célia', 'Marie', 'Ella', 'Amelia', 'Elsa', 'Lisa', 'Noémie', 'Salomé', 'Emmy', 'Céleste', 'Albane', 'Soline', 'Nora', 'Léo', 'Gabriel', 'Raphaël', 'Arthur', 'Louis', 'Jules', 'Adam', 'Maël', 'Lucas', 'Hugo', 'Noah', 'Liam', 'Gabin', 'Sacha', 'Paul', 'Nathan', 'Aaron', 'Mohamed', 'Ethan', 'Tom', 'Éden', 'Léon', 'Noé', 'Tiago', 'Théo', 'Isaac', 'Marius', 'Victor', 'Ayden', 'Martin', 'Naël', 'Mathis', 'Axel', 'Robin', 'Timéo', 'Enzo', 'Marceau', 'Valentin', 'Nino', 'Eliott', 'Nolan', 'Malo', 'Milo', 'Antoine', 'Samuel', 'Augustin', 'Amir', 'Lyam', 'Rayan', 'Yanis', 'Ibrahim', 'Gaspard', 'Sohan', 'Clément', 'Mathéo', 'Simon', 'Baptiste', 'Maxence', 'Imran', 'Kaïs', 'Côme', 'Soan', 'Évan', 'Maxime', 'Camille', 'Alexandre', 'Owen', 'Ismaël', 'Lenny', 'Pablo', 'Léandre', 'Naïm', 'Ilyan', 'Thomas', 'Joseph', 'Oscar', 'Elio', 'Noa', 'Malone', 'Diego', 'Noam', 'Livio', 'Charlie', 'Charly', 'Basile', 'Milan', 'Ilyes', 'Ali', 'Anas', 'Logan', 'Mathys', 'Alessio', 'William', 'Timothée', 'Auguste', 'Ayoub', 'Adem', 'Wassim', 'Youssef', 'Marin'];
+        $lastnames = ['Martin', 'Bernard', 'Thomas', 'Petit', 'Robert', 'Richar', 'Duran', 'Duboi', 'Morea', 'Lauren', 'Simo', 'Miche', 'Lefebvr', 'Lero', 'Rou', 'Davi', 'Bertran', 'More', 'Fournie', 'Girar', 'Bonne', 'Dupon', 'Lamber', 'Fontain', 'Roussea', 'Vincen', 'Mulle', 'Lefevr', 'Faur', 'Andr', 'Mercie', 'Blan', 'Gueri', 'Boye', 'Garnie', 'Chevalie', 'Francoi', 'Legran', 'Gauthie', 'Garci', 'Perri', 'Robi', 'Clemen', 'Mori', 'Nicola', 'Henr', 'Rousse', 'Mathie', 'Gautie', 'Masso', 'Marchan', 'Duva', 'Deni', 'Dumon', 'Mari', 'Lemair', 'Noe', 'Meye', 'Dufou', 'Meunie', 'Bru', 'Blanchar', 'Girau', 'Jol', 'Rivier', 'Luca', 'Brune', 'Gaillar', 'Barbie', 'Arnau', 'Martine', 'Gerar', 'Roch', 'Renar', 'Schmit', 'Ro', 'Lerou', 'Coli', 'Vida', 'Caro', 'Picar', 'Roge', 'Fabr', 'Auber', 'Lemoin', 'Renau', 'Duma', 'Lacroi', 'Olivie', 'Philipp', 'Bourgeoi', 'Pierr', 'Benoi', 'Re', 'Lecler', 'Paye', 'Rollan', 'Leclerc', 'Guillaum', 'Lecomt', 'Lope', 'Jea', 'Dupu', 'Guillo', 'Huber', 'Berge', 'Carpentie', 'Sanche', 'Dupui', 'Mouli', 'Loui', 'Deschamp', 'Hue', 'Vasseu', 'Pere', 'Bouche', 'Fleur', 'Roye', 'Klei', 'Jacque', 'Ada', 'Pari', 'Poirie', 'Mart', 'Aubr', 'Guyo', 'Carr', 'Charle', 'Renaul', 'Charpentie', 'Menar', 'Maillar', 'Baro', 'Berti', 'Baill', 'Herv', 'Schneide', 'Fernande', 'Le Gal', 'Colle', 'Lege', 'Bouvie', 'Julie', 'Prevos', 'Mille', 'Perro', 'Danie', 'Le Rou', 'Cousi', 'Germai', 'Breto', 'Besso', 'Langloi', 'Rem', 'Le Gof', 'Pelletie', 'Levequ', 'Perrie', 'Leblan', 'Barr', 'Lebru', 'Marcha', 'Webe', 'Malle', 'Hamo', 'Boulange', 'Jaco', 'Monnie', 'Michau', 'Rodrigue', 'Guichar', 'Gille', 'Etienn', 'Grondi', 'Poulai', 'Tessie', 'Chevallie', 'Colli', 'Chauvi', 'Da Silv', 'Bouche', 'Ga', 'Lemaitr', 'Benar', 'Marecha', 'Humber', 'Reynau', 'Antoin', 'Hoara', 'Perre', 'Barthelem', 'Cordie', 'Picho', 'Lejeun', 'Gilber', 'Lam', 'Delauna', 'Pasquie', 'Carlie', 'Laporte'];
+        $suffixes = [' Tech', ' Corp', ' Inc', ' Solutions', ' SARL', 'power', ' Services', 'works', ' digital', 'tion', ' Lux', '', '', ''];
 
         $companyName = substr($firstnames[array_rand($firstnames)], 0, 3) . substr($lastnames[array_rand($lastnames)], -4) . $suffixes[array_rand($suffixes)];
 
@@ -177,7 +189,7 @@ final class UserFixtures extends Fixture
 
         $periods = array_values($periods);
 
-        for ($m = 0; $m < random_int(1,2); ++$m) {
+        for ($m = 0; $m < random_int(1, 2); ++$m) {
             $questionnary[] = $periods[random_int(0, count($periods) - 1)];
         }
 
@@ -306,7 +318,7 @@ final class UserFixtures extends Fixture
 
         foreach ($tags as $tag) {
             $tag = array_values($tag);
-            for ($m = 0; $m < random_int(1,2); ++$m) {
+            for ($m = 0; $m < random_int(1, 2); ++$m) {
                 $questionnary[] = $tag[random_int(0, count($tag) - 1)];
             }
         }
@@ -330,13 +342,14 @@ final class UserFixtures extends Fixture
             $user
                 ->setFirstName($this->generateFirstName())
                 ->setLastName($this->generateLastName())
-                ->setEmail('etudiant'.$i.'@email.fr')
+                ->setEmail('etudiant' . $i . '@email.fr')
                 ->setRoles(['ROLE_USER', 'ROLE_STUDENT'])
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'mdp'))
                 ->setPhone('0612345678')
                 ->setType(User::TYPE_STUDENT)
                 ->setQuestionnary($this->generateQuestionnaryForStudent())
-            ;
+                ->setPicture($this->generatePicStudent());
+
 
             $manager->persist($user);
         }
@@ -349,25 +362,25 @@ final class UserFixtures extends Fixture
             $user
                 ->setFirstName($this->generateFirstName())
                 ->setLastName($this->generateLastName())
-                ->setEmail('entreprise'.$j.'@email.fr')
+                ->setEmail('entreprise' . $j . '@email.fr')
                 ->setRoles(['ROLE_USER', 'ROLE_COMPANY'])
-                ->setCompanyName($this->generateCompanyName())
+                ->setCompanyName('Entreprise ' . $j)
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'mdp'))
                 ->setPhone('0612345678')
-                ->setType(User::TYPE_COMPANY);
+                ->setType(User::TYPE_COMPANY)
+                ->setPicture($this->generatePictureCompany());
 
             $manager->persist($user);
 
-            for($k = 0; $k < 3; ++$k) {
+            for ($k = 0; $k < 3; ++$k) {
                 $tags = $this->generateQuestionnaryForCompany();
                 $offer = new Offer();
                 $offer->setProvided(0)
                     ->setCompany($user)
                     ->setPublishedAt(new \DateTime('now'))
                     ->setLink('https://google.fr')
-                    ->setTitle("Title de l'offre".$j.$k)
-                    ->setQuestionnary($tags)
-                ;
+                    ->setTitle("Title de l'offre" . $j . $k)
+                    ->setQuestionnary($tags);
 
                 if (in_array('Période 01', $tags)) {
                     $offer->setType(Offer::TYPE_WORKSTUDY);
@@ -393,9 +406,12 @@ final class UserFixtures extends Fixture
 
                         if ($matchPercentage >= 75) {
                             $matching = new Matching();
+                            $random = random_int(0, 3) > 1 ? 1 : 0;
                             $matching->setOffer($offer)
                                 ->setStudent($student)
-                                ->setPercentage($matchPercentage);
+                                ->setPercentage($matchPercentage)
+                                ->setSendByCompany(true)
+                                ->setAcceptedByStudent($random);
 
                             $manager->persist($matching);
                         }
@@ -414,7 +430,7 @@ final class UserFixtures extends Fixture
             ->setLastName('Istrateur')
             ->setEmail('admin@email.fr')
             ->setRoles(['ROLE_USER', 'ROLE_ISCOM'])
-            ->setCompanyName('Entreprise '.$j)
+            ->setCompanyName('ISCOM')
             ->setPassword($this->passwordEncoder->encodePassword($user, 'mdp'))
             ->setPhone('0612345678')
             ->setType(User::TYPE_ISCOM);
