@@ -11,8 +11,8 @@
         }
         #view_file a   {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: -75px;
+            left: 0;
             z-index: 1000;
         }
         #view_file embed, #view_file #empty {
@@ -31,7 +31,7 @@
     <div id="view_file">
         <a href="{{ path('match_student') }}" class="btn btn-danger btn-lg">Retour</a>
         {% if file is not null %}
-            <embed src="{{ file }}" height="100%" />
+            <embed src="{{ asset(file | replace({'/app/public':''})) }}" width="100%"/>
         {% else %}
             <div id="empty" style="text-align: center">
                 Affichage indisponnible ou aucun fichier n'a été joint à l'annonce.
