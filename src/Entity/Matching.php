@@ -34,6 +34,19 @@ class Matching
      */
     private $offer;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $acceptedByStudent;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sendByCompany;
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $concludedByCompany;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,6 +86,36 @@ class Matching
     {
         $this->offer = $offer;
 
+        return $this;
+    }
+
+    public function getAcceptedByStudent(){
+        return $this->acceptedByStudent;
+    }
+
+    public function setAcceptedByStudent(string $acceptedByStudent): self
+    {
+        $this->acceptedByStudent = $acceptedByStudent;
+        return $this;
+    }
+
+    public function getSendByCompany(){
+        return $this->sendByCompany;
+    }
+
+    public function setSendByCompany(string $sendByCompany): self
+    {
+        $this->sendByCompany = $sendByCompany;
+        return $this;
+    }
+
+    public function getConcludedByCompany(){
+        return $this->concludedByCompany;
+    }
+
+    public function setConcludedByCompany(string $concludedByCompany): self
+    {
+        $this->concludedByCompany = $concludedByCompany;
         return $this;
     }
 }
