@@ -21,6 +21,11 @@
             color: #000;
         }
 
+        label[for='student_questions_cvFile_file'] {
+            padding: 10px 25px;
+            line-height: 45px;
+        }
+
         input[type="checkbox"]:disabled + label {
             color: #888;
         }
@@ -160,9 +165,9 @@ position: -webkit-sticky;
     <h5 style="margin-bottom: 30px">Vous pouvez séléctionner 2 périodes maximum en fonction de votre classe. Pour rappel, vous ne pourrez pas réaliser de stage sur une période de cours.</h5>
     {{ form_row(form.period) }}
     <h2 style="font-weight: bold; margin-bottom: 15px;margin-top: 30px">Votre CV</h2>
-    <label id="cv_file" for="student_questions_cvFile_file">Chargez votre CV au format PDF (recommandé)</label>
+    <label id="cv_file" for="student_questions_cvFile_file">Chargez votre CV au format PDF (recommandé)<i style="float: right; color: #A5201E; font-size: 30px" class="bi bi-download"></i></label>
     {{ form_row(form.cvFile) }}
-    <button style="margin: 100px auto 100px; display: block; border: none; background-color: #A5201E; color: #fff; padding: 40px 60px; border-radius: 7px 7px 7px 0px; font-size: 32px" type="submit">
+    <button style="margin: 100px auto 100px; display: block; border: none; background-color: #A5201E; color: #fff; padding: 40px 60px; border-radius: 7px 7px 7px 0px; font-size: 20px;" type="submit">
         ENVOYER
     </button>
     {{ form_end(form) }}
@@ -196,7 +201,7 @@ position: -webkit-sticky;
 
     $(document).on('change', '#student_questions_cvFile_file',function() {
             let $filename = $( "#student_questions_cvFile_file" ).get(0).files[0].name;
-            $('#cv_file').text($filename);
+            $('#cv_file').html($filename + '<i style="float: right; color: #A5201E; font-size: 30px" class="bi bi-download"></i>');
     });
 
     </script>
