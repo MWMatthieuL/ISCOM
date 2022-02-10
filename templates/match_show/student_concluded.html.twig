@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes matchs conclus{% endblock %}
+
+{% block body %}
+    <style>
+        #student_concluded{
+            width: 100%;
+            height: 100%;
+        }
+        #student_concluded > div {
+            background-color: #ebebeb;
+            border-radius: 5px;
+            height: 100px;
+            width: 60%;
+            overflow: hidden;
+            box-shadow: 0 10px 12px -1px #e2e2e2 ;
+        }
+        #student_concluded > div > span {
+            text-align: center;
+            width:200px;
+        }
+
+        #student_concluded > div > img {
+            width:100px;
+            height:100%;
+        }
+
+        #student_concluded .btn {
+            background-color: #006c9b;
+            border-color: #006c9b;
+            border-radius: 20px;
+            margin-right: 1em;
+            width: 75px;
+            height:75px;
+            font-weight: bold;
+            cursor: default;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #student_concluded .btn--accepted {
+            background-color: #069b00;
+            border-color: #069b00;
+        }
+        #student_concluded .btn--rejected {
+            background-color: #a5201e;
+            border-color: #a5201e;
+        }
+        #student_concluded .btn--disabled{
+            background-color: #948999;
+            border-color: #948999;
+        }
+    </style>
+    <div id="student_concluded">
+        <h2 class="mb-3">Matchs conclus</h2>
+        <h6 class="mb-5">Vous avez matché avec ces entreprises. Après votre entretien d'embauche, avez-vous été recruté en stage/alternance ?</h6>
+        {% for match in matches_concluded %}
+            <div class="mb-4 d-flex flex-row justify-content-between align-items-center">
+                <img src="{{ match.offer.company.picture ? asset(match.offer.company.picture) : "" }}" alt="">
+                <span>{{ match.offer.company.displayName }}</span>
+                <span>Avez-vous été recruté ?</span>
+                <div class="d-flex">
+                    {% if match.concludedByCompany is same as true %}
+                        <span class="btn btn-primary btn--accepted"><span>OUI</span></span>
+                        <span class="btn btn-primary btn--disabled"><span>NON</span></span>
+                    {% elseif match.concludedByCompany is same as false %}
+                        <span class="btn btn-primary btn--disabled"><span>OUI</span></span>
+                        <span class="btn btn-primary btn--rejected"><span>NON</span></span>
+                    {% else %}
+                        <span class="btn btn-primary btn--disabled"><span>OUI</span></span>
+                        <span class="btn btn-primary btn--disabled"><span>NON</span></span>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

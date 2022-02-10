@@ -51,7 +51,7 @@ class MatchingStudentController extends AbstractController
      * @param string                 $status
      *
      */
-    public function setStatusMatch(EntityManagerInterface $manager, int $id, string $status)
+    public function set_status_match(EntityManagerInterface $manager, int $id, string $status)
     {
         $match = $manager->getRepository(Matching::class)->find($id);
         if($status === "rejected"){
@@ -74,10 +74,26 @@ class MatchingStudentController extends AbstractController
      *
      * @return mixed
      */
-
-    public function displayOffer(EntityManagerInterface $manager, int $id){
+    public function display_offer(EntityManagerInterface $manager, int $id){
         $match = $manager->getRepository(Matching::class)->find($id);
         $offer = $match->getOffer();
         return $this->render('offer_file.html.twig', ["file" => $offer->getOfferFile()]);
+    }
+
+    /**
+     * @Route("/etudiant/match/conclus", name="match_student_concluded")
+     */
+    public function student_concluded_matches(EntityManagerInterface $manager){
+
+        $user = $this->getUser();
+        $matches = $manager->getRepository(Matching::class)->findBy([
+            'student' => $user->getId(),
+            'sendByCompany' => true,
+            'acceptedByStudent' => true
+        ]);
+        return $this->render('match_show/student_concluded.html.twig', [
+            'matches_concluded' => $matches,
+        ]);
+
     }
 }
