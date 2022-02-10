@@ -42,8 +42,6 @@ final class UserFixtures extends Fixture
             . substr($lastnames[array_rand($lastnames)], -4)
             . $suffixes[array_rand($suffixes)];
 
-        dump($companyName);
-
         return $companyName;
     }
 
