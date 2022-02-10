@@ -91,10 +91,10 @@
                     <a href="{{ path('match_student') }}" class="h6">Mes matchs</a>
                 </span>
                 </li>
-                <li class="{{ app.request.get('_route') is same as "password_student"  ? 'active' : ''}}">
+                <li class="{{ app.request.get('_route') is same as "match_student_concluded"  ? 'active' : ''}}">
                 <span>
                     <i class="bi bi-heart"></i>
-                    <a href="{{ path('password_student') }}" class="h6">Matchs conclus</a>
+                    <a href="{{ path('match_student_concluded') }}" class="h6">Matchs conclus</a>
                 </span>
                 </li>
             {% endif %}
