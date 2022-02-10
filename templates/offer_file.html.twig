@@ -31,7 +31,7 @@
     <div id="view_file">
         <a href="{{ path('match_student') }}" class="btn btn-danger btn-lg">Retour</a>
         {% if file is not null %}
-            <embed src="{{ asset(file | replace({'/app/public':''})) }}" width="100%"/>
+            <embed src="{{ asset(file | replace({'/app/public':''})) }}" width="100%" height="100%"/>
         {% else %}
             <div id="empty" style="text-align: center">
                 Affichage indisponnible ou aucun fichier n'a été joint à l'annonce.
