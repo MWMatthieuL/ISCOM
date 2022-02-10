@@ -121,7 +121,7 @@ class MatchAndOfferController extends AbstractController
     }
 
     /**
-     * @Route("/entreprise/match/{id}/cv",  name="match_student_view_offer_file", methods={"GET"})
+     * @Route("/entreprise/match/{id}/cv",  name="match_student_view_cv_file", methods={"GET"})
      *
      * @param EntityManagerInterface $manager
      * @param int                    $id
@@ -131,6 +131,30 @@ class MatchAndOfferController extends AbstractController
     public function display_offer(EntityManagerInterface $manager, int $id){
         $match = $manager->getRepository(Matching::class)->find($id);
         $offer = $match->getOffer();
-        return $this->render('offer_file.html.twig', ["file" => $offer->getOfferFile()]);
+        $student = $match->getStudent();
+        return $this->render('cv_file.html.twig', ["file" => $student->getCvFile(), 'offer' => $offer]);
     }
+
+    /**
+     * @Route("/entreprise/match/envoi-offre/{id}",  name="match_student_send_offer", methods={"GET"})
+     *
+     * @param EntityManagerInterface $manager
+     * @param int                    $id
+     *
+     * @return mixed
+     */
+    public function send_offer(EntityManagerInterface $manager, int $id){
+        $match = $manager->getRepository(Matching::class)->find($id);
+        $offer = $match->getOffer();
+        $student = $match->getStudent();
+
+        $match->setSendByCompany(true);
+        $manager->persist($match);
+        $manager->flush();
+
+        return $this->redirectToRoute('offer_matchs', [
+            'id' => $offer->getId(),
+        ]);
+    }
+
 }
