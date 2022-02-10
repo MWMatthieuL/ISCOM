@@ -1,0 +1,253 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes matchs{% endblock %}
+
+{% block body %}
+    <style>
+        .tabs {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin : 0;
+            padding: 0;
+        }
+
+        .tabs li{
+            margin-right: 1em;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .tabs li:hover {
+            color: rgba(165, 32, 30, 0.75) !important;
+        }
+
+        .tab > div {
+            background-color: #ebebeb;
+            border-radius: 5px;
+            height: 100px;
+            overflow: hidden;
+            box-shadow: 0 10px 12px -1px #e2e2e2 ;
+        }
+        .tab > div > span {
+            text-align: center;
+            width:150px;
+        }
+
+        .tab > div > img {
+            width:100px;
+            height:100%;
+        }
+
+        .tab .btn {
+            background-color: #006c9b;
+            border-color: #006c9b;
+            border-radius: 20px;
+            margin-right: 1em;
+            width: 150px;
+        }
+        .tab .btn--accepted {
+            background-color: #069b00;
+            border-color: #069b00;
+        }
+        .tab .btn--rejected {
+            background-color: #a5201e;
+            border-color: #a5201e;
+        }
+        .tab .btn--disabled{
+            background-color: #948999;
+            border-color: #948999;
+        }
+
+        .modal{
+            top: 37.5%;
+            left: 30%;
+            width: 40%;
+            height: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1em;
+            text-align: center;
+        }
+
+        #modal_reject p {
+            color: white;
+        }
+
+        .modal button:last-child {
+            color: white;
+            background-color: #006c9b;
+        }
+
+        #modal_reject button:first-of-type {
+            color: #b2b2b2;
+        }
+
+        .modal button:first-of-type {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: scale(1.1);
+
+        }
+
+        #modal_reject{
+            background-color: #a5201e;
+            border: 1px solid #adadad;
+        }
+
+        #modal_accept{
+            background-color: white;
+            border: 1px solid black:
+        }
+    </style>
+    <h2 class="mb-3">Mes matchs étudiants</h2>
+    <h6>{{ offer.title }}</h6>
+    <ul class="tabs mt-3 mb-5">
+        <li id='all-tab' style="color: #a5201e">Tous mes matchs ({{ matchings | length }})</li>
+        <li id='accepted-tab'>Acceptés ({{ acceptedMatchings | length }})</li>
+        <li id='rejected-tab'>Refusés ({{ refusedMatchings | length}})</li>
+    </ul>
+    <div id="all" class="tab">
+        {% for match in matchings %}
+            <div id="id-{{ match.id }}" class="mb-4 d-flex flex-row justify-content-between align-items-center">
+                <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
+                <span>{{ match.student.displayName }}</span>
+                <span>{{ match.percentage | round }} %</span>
+                <div>
+                    {% if match.sendByCompany %}
+                        <button value="{{ match.id }}" class="btn btn-success btn--accepted">Offre envoyée</button>
+                    {% else %}
+                        <button value="{{ match.id }}" style="width: 210px" class="btn btn-primary">Envoyer l'offre à l'étudiant</button>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="accepted" class="tab" style="display: none">
+        {% for match in acceptedMatchings %}
+            <div class="mb-4 d-flex flex-row justify-content-between align-items-center">
+                <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
+                <span>{{ match.student.displayName }}</span>
+                <span>{{ match.percentage | round }} %</span>
+                <div>
+                    <button value="/etudiant/match/{{ match.id }}/cv" style="width: 210px" class="btn btn-primary">Voir le CV</button>
+                    <button value="{{ match.id }}" style="width: 210px" class="btn btn-primary">Contacter l'étudiant</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="rejected" class="tab" style="display: none">
+        {% for match in refusedMatchings  %}
+            <div style="background-color: #A5201E; color: white" class="mb-4 d-flex flex-row justify-content-between align-items-center">
+                <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
+                <span>{{ match.student.displayName }}</span>
+                <span>{{ match.percentage | round }} %</span>
+                <div style="text-align: center;margin-right: 25px; margin-top: 3px;">
+                    L'etudiant n'est malheureusement pas intéréssé<br>par votre offre ou a déjà trouvé son stage/alternance
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div id="modal_accept" class="modal card" style="display: none">
+        <p>En cliquant sur "Accepter l'offre", l'entreprise recevera un message précisant que vous êtes intéressé(e) par son offre.</p>
+        <p>Elle aura accèes à votre CV et pourra vous contacter par mail et téléphone</p>
+        <button class="btn btn-close"> X </button>
+        <button id="confirm_accept" class="btn"> Accepter l'offre </button>
+    </div>
+    <div id="modal_reject" class="modal card" style="display: none">
+        <p>En refusant l'offre vous ne pourrez plus y postuler.</p>
+        <p>En cliquant sur "Refuser l'offre", l'entreprise recevera un message de refus de votre part précisant que vous n'êtes pas intéressé(e) pas l'offre</p>
+        <button class="btn btn-close"> X </button>
+        <button id="confirm_reject" class="btn"> Refuser l'offre </button>
+    </div>
+    <script>
+        let target_match_id = null;
+        document.getElementById('all-tab').addEventListener("click",e => {
+            document.querySelector('.tab').style.display = 'none';
+            document.getElementById('all').style.display = 'block';
+            document.getElementById('rejected-tab').style.color = 'black';
+            document.getElementById('accepted-tab').style.color = 'black';            document.getElementById('rejected').style.display = 'none';
+            document.getElementById('accepted').style.display = 'none';
+            document.getElementById('all-tab').style.color = '#a5201e';
+            e.preventDefault();
+        });
+        document.getElementById('accepted-tab').addEventListener("click",e => {
+            document.querySelector('.tab').style.display = 'none';
+            document.getElementById('accepted').style.display = 'block';
+            document.getElementById('rejected-tab').style.color = 'black';            document.getElementById('all').style.display = 'none';
+            document.getElementById('rejected').style.display = 'none';
+            document.getElementById('all-tab').style.color = 'black';
+            document.getElementById('accepted-tab').style.color = '#a5201e';
+            e.preventDefault();
+        });
+        document.getElementById('rejected-tab').addEventListener("click",e => {
+            document.querySelector('.tab').style.display = 'none';
+            document.getElementById('rejected').style.display = 'block';
+            document.getElementById('all-tab').style.color = 'black';
+            document.getElementById('accepted').style.display = 'none';
+            document.getElementById('all').style.display = 'none';
+            document.getElementById('accepted-tab').style.color = 'black';
+            document.getElementById('rejected-tab').style.color = '#a5201e';
+            e.preventDefault();
+        });
+        Array.from(document.getElementsByClassName('btn-accept')).forEach(function(element) {
+            element.addEventListener('click', e => {
+                document.getElementById('modal_accept').style.display = 'flex';
+                target_match_id = element.value;
+                e.preventDefault();
+            });
+        });
+        Array.from(document.getElementsByClassName('btn-reject')).forEach(function(element) {
+            element.addEventListener('click', e => {
+                document.getElementById('modal_reject').style.display = 'flex';
+                target_match_id = element.value;
+                e.preventDefault();
+            });
+        });
+        Array.from(document.getElementsByClassName('btn-close')).forEach(function(element) {
+            element.addEventListener('click', e => {
+                document.getElementById('modal_reject').style.display= 'none';
+                document.getElementById('modal_accept').style.display= 'none';
+                target_match_id = null;
+                e.preventDefault();
+            });
+        });
+        document.getElementById('confirm_accept').addEventListener("click", (e) => {
+            document.getElementById('modal_accept').style.display = 'none';
+            document.querySelector(`#id-${target_match_id} button:first-of-type`).classList.remove('btn-accept');
+            document.querySelector(`#id-${target_match_id} button:last-child`).classList.remove('btn-reject');
+            document.querySelector(`#id-${target_match_id} button:last-child`).classList.remove('btn-reject');
+            document.querySelector(`#id-${target_match_id} button:first-of-type`).classList.add('btn--accepted');
+            document.querySelector(`#id-${target_match_id} button:last-child`).classList.add('btn--disabled');
+            document.querySelector(`#id-${target_match_id} button:first-of-type`).disabled = "disabled";
+            document.querySelector(`#id-${target_match_id} button:last-child`).disabled = "disabled";
+            document.querySelector(`#id-${target_match_id} button:first-of-type`).innerHTML = "Offre acceptée";
+            setStatus(target_match_id, true);
+            target_match_id = null;
+            location.reload(true);
+            e.preventDefault();
+        });
+        document.getElementById('confirm_reject').addEventListener("click", (e)=>{
+            document.getElementById('modal_reject').style.display = 'none';
+            document.querySelector(`#id-${target_match_id} button:first-of-type`).classList.remove('btn-accept');
+            document.querySelector(`#id-${target_match_id} button:last-child`).classList.remove('btn-reject');
+            document.querySelector(`#id-${target_match_id} button:last-child`).classList.remove('btn-reject');
+            document.querySelector(`#id-${target_match_id} button:last-child`).classList.add('btn--rejected');
+            document.querySelector(`#id-${target_match_id} button:first-of-type`).classList.add('btn--disabled');
+            document.querySelector(`#id-${target_match_id} button:first-of-type`).disabled = "disabled";
+            document.querySelector(`#id-${target_match_id} button:last-child`).disabled = "disabled";
+            document.querySelector(`#id-${target_match_id} button:last-child`).innerHTML = "Offre refusée";
+            setStatus(target_match_id, false);
+            target_match_id = null;
+            location.reload(true);
+            e.preventDefault();
+        });
+
+        async function setStatus(id, status) {
+            await fetch( `/etudiant/match/${id}/${status ? "accepted" : "rejected"}`, {method: 'POST'});
+        }
+    </script>
+{% endblock %}
