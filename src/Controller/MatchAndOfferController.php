@@ -88,4 +88,49 @@ class MatchAndOfferController extends AbstractController
         $manager->flush();
 
     }
+
+    /**
+     * @Route("/entreprise/mes-matchs-etudiants/{id}", name="offer_matchs")
+     */
+    public function offerMatchs(int $id): Response
+    {
+        $manager = $this->getDoctrine()->getManager();
+
+        $offer = $manager->getRepository(Offer::class)->find($id);
+
+        $matchings = $manager->getRepository(Matching::class)->findBy([
+            'offer' => $offer,
+        ]);
+
+        $acceptedMatchings = $manager->getRepository(Matching::class)->findBy([
+            'offer' => $offer,
+            'acceptedByStudent' => true,
+        ]);
+
+        $refusedMatchings = $manager->getRepository(Matching::class)->findBy([
+            'offer' => $offer,
+            'acceptedByStudent' => false,
+        ]);
+
+        return $this->render('match_and_offers/offer_matchs.html.twig', [
+            'offer' => $offer,
+            'matchings' => $matchings,
+            'acceptedMatchings' => $acceptedMatchings,
+            'refusedMatchings' => $refusedMatchings
+        ]);
+    }
+
+    /**
+     * @Route("/entreprise/match/{id}/cv",  name="match_student_view_offer_file", methods={"GET"})
+     *
+     * @param EntityManagerInterface $manager
+     * @param int                    $id
+     *
+     * @return mixed
+     */
+    public function display_offer(EntityManagerInterface $manager, int $id){
+        $match = $manager->getRepository(Matching::class)->find($id);
+        $offer = $match->getOffer();
+        return $this->render('offer_file.html.twig', ["file" => $offer->getOfferFile()]);
+    }
 }
