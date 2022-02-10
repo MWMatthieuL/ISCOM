@@ -7,13 +7,13 @@
 @import "profile";
 @import "login";
 
-html {
+.no-overflow {
   height: 100% !important;
   width: 100% !important;
   overflow: hidden;
 }
 
-body {
+.body-flex {
   display: flex;
   height: 100% !important;
   width: 100% !important;

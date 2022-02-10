@@ -112,12 +112,16 @@
 </ul>
 <div id="all" class="tab">
     {% for match in matches  %}
-    <div id="id-{{ match.id }}" class="mb-4 d-flex flex-row justify-content-between align-items-center">
+        <div id="id-{{ match.id }}" class="mb-4 d-flex flex-row justify-content-between align-items-center">
         <img src="{{ match.offer.company.picture ? asset(match.offer.company.picture) : "" }}" alt="">
         <span>{{ match.offer.company.displayName }}</span>
         <span>Votre profil à matché à {{ match.percentage | round(1, 'floor') }} %</span>
         <div>
-            <a href="/etudiant/match/{{ match.id }}/offer" class="btn btn-primary">Voir l'offre</a>
+            {% if match.offer.filename is not null %}
+                <a href="/etudiant/match/{{ match.id }}/offer" class="btn btn-primary">Voir l'offre</a>
+            {% elseif match.offer.link is not null %}
+                <a href="{{ match.offer.link }}" class="btn btn-primary">Voir l'offre</a>
+            {% endif %}
             {% if match.acceptedByStudent is same as true %}
                 <button value="{{ match.id }}" class="btn btn-primary btn--accepted" disabled>Offre acceptée</button>
                 <button value="{{ match.id }}" class="btn btn-primary btn--disabled" disabled>Refuser l'offre</button>
@@ -134,12 +138,18 @@
 </div>
 <div id="accepted" class="tab" style="display: none">
     {% for match in matches_accepted  %}
+        {{ dump(match) }}
+
         <div class="mb-4 d-flex flex-row justify-content-between align-items-center">
             <img src="{{ match.offer.company.picture ? asset(match.offer.company.picture) : "" }}" alt="">
             <span>{{ match.offer.company.displayName }}</span>
             <span>Votre profil à matché à {{ match.percentage | round(1, 'floor') }} %</span>
             <div>
-                <a href="/etudiant/match/{{ match.id }}/offer" class="btn btn-primary">Voir l'offre</a>
+                {% if match.offer.filename is not null %}
+                    <a href="/etudiant/match/{{ match.id }}/offer" class="btn btn-primary">Voir l'offre</a>
+                {% elseif match.offer.link is not null %}
+                    <a href="{{ match.offer.link }}" class="btn btn-primary">Voir l'offre</a>
+                {% endif %}
             </div>
         </div>
     {% endfor %}
@@ -151,7 +161,12 @@
             <span>{{ match.offer.company.displayName }}</span>
             <span>Votre profil à matché à {{ match.percentage | round(1, 'floor') }} %</span>
             <div>
-                <a href="/etudiant/match/{{ match.id }}/offer" class="btn btn-primary">Voir l'offre</a>
+                {{ dump(match) }}
+                {% if match.offer.filename is not null %}
+                    <a href="/etudiant/match/{{ match.id }}/offer" class="btn btn-primary">Voir l'offre</a>
+                {% elseif match.offer.link is not null %}
+                    <a href="{{ match.offer.link }}" class="btn btn-primary">Voir l'offre</a>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

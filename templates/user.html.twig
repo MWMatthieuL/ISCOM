@@ -5,7 +5,9 @@
 <div id="quick_user_modal" style="display: none" class="p-2">
     <ul>
         <li>
-            <img src="{{ "images/user/" ~ app.user.picture }}" alt="">
+            <div style="background: #A5201E;color: #fff;font-size: 24px;font-weight: bold;width: 56px;height: 56px;text-align: center;border-radius: 5px; margin-right: 20px">
+                <p style="margin: 0 auto;">{{ app.user.firstname|first|upper }}{{ app.user.lastname|first|upper }}</p>
+            </div>
             <div>
                 <strong class="p-0 m-0">{{ app.user.displayName }}</strong>
                 {{ app.user.email }}
@@ -24,7 +26,7 @@
             <a href="{{ path('cgu') }}" class="h6">Condition d'utilisation</a>
         </li>
         <li>
-            <i class="bi bi-bar-chart-line"></i>
+            <i class="bi bi-box-arrow-right"></i>
             <a href="{{ path('app_logout') }}" class="h6">Se déconnecter</a>
         </li>
     </ul>
