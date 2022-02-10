@@ -140,7 +140,7 @@
         {% endfor %}
     </div>
     <div id="rejected" class="tab" style="display: none">
-        {% for match in matchings  %}
+        {% for match in refusedMatchings  %}
             <div style="background-color: #A5201E; color: white" class="mb-4 d-flex flex-row justify-content-between align-items-center">
                 <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
                 <span>{{ match.student.displayName }}</span>
