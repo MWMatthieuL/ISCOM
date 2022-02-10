@@ -120,20 +120,20 @@
                     {% if match.sendByCompany %}
                         <button value="{{ match.id }}" class="btn btn-success btn--accepted">Offre envoyée</button>
                     {% else %}
-                        <button value="{{ match.id }}" style="width: 210px" class="btn btn-primary">Envoyer l'offre à l'étudiant</button>
+                        <a href="{{ path('match_student_send_offer' , { id : match.id }) }}" style="width: 210px" class="btn btn-primary">Envoyer l'offre à l'étudiant</a>
                     {% endif %}
                 </div>
             </div>
         {% endfor %}
     </div>
     <div id="accepted" class="tab" style="display: none">
-        {% for match in acceptedMatchings %}
+        {% for match in matchings %}
             <div class="mb-4 d-flex flex-row justify-content-between align-items-center">
                 <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
                 <span>{{ match.student.displayName }}</span>
                 <span>{{ match.percentage | round }} %</span>
                 <div>
-                    <button value="/etudiant/match/{{ match.id }}/cv" style="width: 210px" class="btn btn-primary">Voir le CV</button>
+                    <a href="{{ path('match_student_view_cv_file' , { id : match.id }) }}" style="width: 210px" class="btn btn-primary">Voir le CV</a>
                     <button value="{{ match.id }}" style="width: 210px" class="btn btn-primary">Contacter l'étudiant</button>
                 </div>
             </div>
