@@ -67,7 +67,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/inscription/etudiant", name="app_register_student")
+     * @Route("/inscription/candidat", name="app_register_student")
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @param UserPasswordEncoderInterface $passwordEncoder

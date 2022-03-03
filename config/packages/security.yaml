@@ -41,7 +41,7 @@ security:
         - { path: ^/entreprise, role: ROLE_COMPANY }
         - { path: ^/etudiant, role: ROLE_STUDENT }
         - { path: ^/iscom, role: ROLE_ISCOM }
-        - { path: ^/, role: ROLE_USER }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
 
     role_hierarchy:

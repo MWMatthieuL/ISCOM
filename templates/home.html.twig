@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html class="no-overflow">
+<head>
+    <meta charset="UTF-8">
+    <title>Skillz</title>
+</head>
+<body style="margin: 0; padding: 0;" id="body">
+    <img style="position: absolute; width: 100%" src="{{ asset('images/home.png') }}">
+</div>
+<script type="text/javascript">
+    document.getElementById('body').addEventListener('click', function () {
+        window.location.href = '{{ path('app_register_homepage') }}';
+    })
+</script>
+</body>
+</html>
