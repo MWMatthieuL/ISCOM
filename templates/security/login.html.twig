@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'temp.html.twig' %}
 
 {% block title %}Connexion{% endblock %}
 
@@ -41,12 +41,6 @@
                 </form>
                 <a class="my-2" href="{{ path('app_register_homepage') }}" style="color:#006c9b"> S'inscrire</a>
             {% endif %}
-            {% if type is defined %}
-                {% set img = type is same as "iscom" ? "login.png" : type is same as "entreprise" ? "puzzle.png" : "team.png" %}
-            {% else %}
-                {%  set img = "team.png" %}
-            {% endif %}
         </div>
-        <img src="{{ asset('images/' ~ img) }}" height="100%" width="auto" alt="">
     </div>
 {% endblock %}

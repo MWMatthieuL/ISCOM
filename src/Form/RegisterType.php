@@ -21,7 +21,7 @@ class RegisterType extends AbstractType
 
         switch ($type) {
             case 'student':
-                $emailPlaceholder = 'Email ISCOM (prénom.nom@iscom.org)';
+                $emailPlaceholder = 'Email';
                 $builder
                     ->add('lastName', TextType::class, [
                         'label' => false,
@@ -63,7 +63,7 @@ class RegisterType extends AbstractType
                 ;
                 break;
             case 'company':
-                $emailPlaceholder = 'Email contact (prénom.nom@iscom.org)';
+                $emailPlaceholder = 'Email contact';
                 $builder
                     ->add('companyName', TextType::class, [
                         'label' => false,
