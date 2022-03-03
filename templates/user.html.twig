@@ -5,7 +5,7 @@
 <div id="quick_user_modal" style="display: none" class="p-2">
     <ul>
         <li>
-            <div style="background: #A5201E;color: #fff;font-size: 24px;font-weight: bold;width: 56px;height: 56px;text-align: center;border-radius: 5px; margin-right: 20px">
+            <div style="background: #E94E1A;color: #fff;font-size: 24px;font-weight: bold;width: 56px;height: 56px;text-align: center;border-radius: 5px; margin-right: 20px">
                 <p style="margin: 0 auto;">{{ app.user.firstname|first|upper }}{{ app.user.lastname|first|upper }}</p>
             </div>
             <div>
@@ -13,14 +13,14 @@
                 {{ app.user.email }}
             </div>
         </li>
-        <li>
-            <i class="bi bi-person"></i>
-            <a href="{{ path('profile_' ~  app.user.type | replace({'admin': 'iscom'})) }}" class="h6">Compte</a>
-        </li>
-        <li>
-            <i class="bi bi-question-octagon"></i>
-            <a href="{{ path('help') }}" class="h6">Aide</a>
-        </li>
+{#        <li>#}
+{#            <i class="bi bi-person"></i>#}
+{#            <a href="{{ path('profile_' ~  app.user.type | replace({'admin': 'iscom'})) }}" class="h6">Compte</a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <i class="bi bi-question-octagon"></i>#}
+{#            <a href="{{ path('help') }}" class="h6">Aide</a>#}
+{#        </li>#}
         <li>
             <i class="bi bi-file-earmark-medical"></i>
             <a href="{{ path('cgu') }}" class="h6">Condition d'utilisation</a>

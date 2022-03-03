@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'temp.html.twig' %}
 
 {% block title %}Connexion{% endblock %}
 
@@ -15,7 +15,7 @@
     <div id="register">
         <div id="form">
             {% if type == 'student' %}
-                <h1>Inscription Etudiant</h1>
+                <h1>Inscription Candidat</h1>
             {% elseif type == 'company' %}
                 <h1>Inscription entreprise</h1>
             {% elseif type == 'admin' %}
@@ -55,6 +55,5 @@
                 {{ form_end(form) }}
             {% endif %}
         </div>
-        <img src="{{ asset("images/team.png") }}" alt=""/>
     </div>
 {% endblock %}

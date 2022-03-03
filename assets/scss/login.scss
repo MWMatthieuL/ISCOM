@@ -33,8 +33,8 @@
     font-weight: bold;
   }
   .btn {
-    background-color: #a5201e;
-    border-color: #a5201e;
+    background-color: #E94E1A;
+    border-color: #E94E1A;
     font-weight: bold;
   }
 }
@@ -52,15 +52,14 @@
 
   .btn-effect {
 
-    border: 5px solid black;
-
     .btn {
+      width: 186px;
+      text-align: center;
       z-index: 9999;
-      background-color: #a5201e;
+      background-color: #E94E1A;
       padding: 1em 1.5em;
       border-radius: 0;
       font-weight: bold;
-      transform: translate(-17px, -17px)
     }
   }
 }

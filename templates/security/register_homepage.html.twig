@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'temp.html.twig' %}
 
 {% block title %}Inscriptions{% endblock %}
 {% block body %}
@@ -14,13 +14,10 @@
     </style>
 
     <div id="pre_login" class="d-flex justify-content-around align-items-center h-100">
-        <div id="left" class="d-flex flex-column justify-content-between align-items-start">
-            <h1>Outils de Matching <br> ISCOM {{ admin ? "admin" : "" }}</h1>
-            <span class="my-10">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    <br>Nullam sed commodo messa. </p>
-                <p>Nulla non egestas toror, ac porttitor nunc. <br> Nullam quis lacun eget massa venenatis viverra.</p>
-            </span>
+        <img src="{{ asset('images/logo.png') }}" height="auto" width="40%" alt="">
+
+        <div id="" class="d-flex flex-column justify-content-between align-items-start">
+            <h1>Inscription</h1>
             <span class="w-100 d-flex justify-content-between align-items-center" style="position:relative">
                 {% if admin %}
                     <span class="btn-effect w-100">
@@ -29,15 +26,14 @@
 
                 {% else %}
                     <span class="btn-effect">
-                        <a class="btn btn-lg btn-danger" href="{{ path('app_register_student') }}">Etudiant(e)s</a>
+                        <a class="btn btn-lg btn-danger" style="border-radius: 10px; margin-right: 10px" href="{{ path('app_register_student') }}">Candidat</a>
                     </span>
                     <span class="btn-effect">
-                        <a class="btn btn-lg btn-danger" href="{{ path('app_register_company') }}">Entreprises</a>
+                        <a class="btn btn-lg btn-danger" style="border-radius: 10px" href="{{ path('app_register_company') }}">Entreprises</a>
                     </span>
                 {% endif %}
             </span>
         </div>
-        <img src="{{ asset('images/pre_login.png') }}" height="auto" width="60%" alt="">
     </div>
 
 

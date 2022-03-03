@@ -51,8 +51,8 @@
             border-color: #069b00;
         }
         .tab .btn--rejected {
-            background-color: #a5201e;
-            border-color: #a5201e;
+            background-color: #E94E1A;
+            border-color: #E94E1A;
         }
         .tab .btn--disabled{
             background-color: #948999;
@@ -94,7 +94,7 @@
         }
 
         #modal_reject{
-            background-color: #a5201e;
+            background-color: #E94E1A;
             border: 1px solid #adadad;
         }
 
@@ -106,9 +106,9 @@
     <h2 class="mb-3">Mes matchs étudiants</h2>
     <h6>{{ offer.title }}</h6>
     <ul class="tabs mt-3 mb-5">
-        <li id='all-tab' style="color: #a5201e">Tous mes matchs ({{ matchings | length }})</li>
-        <li id='accepted-tab'>Acceptés ({{ acceptedMatchings | length }})</li>
-        <li id='rejected-tab'>Refusés ({{ refusedMatchings | length}})</li>
+        <li id='all-tab' style="color: #E94E1A">Tous mes matchs ({{ matchings | length }})</li>
+{#        <li id='accepted-tab'>Acceptés ({{ acceptedMatchings | length }})</li>#}
+{#        <li id='rejected-tab'>Refusés ({{ refusedMatchings | length}})</li>#}
     </ul>
     <div id="all" class="tab">
         {% for match in matchings %}
@@ -126,31 +126,31 @@
             </div>
         {% endfor %}
     </div>
-    <div id="accepted" class="tab" style="display: none">
-        {% for match in acceptedMatchings %}
-            <div class="mb-4 d-flex flex-row justify-content-between align-items-center">
-                <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
-                <span>{{ match.student.displayName }}</span>
-                <span>{{ match.percentage | round }} %</span>
-                <div>
-                    <a href="{{ path('match_student_view_cv_file' , { id : match.id }) }}" style="width: 210px" class="btn btn-primary">Voir le CV</a>
-                    <button value="{{ match.id }}" style="width: 210px" class="btn btn-primary">Contacter l'étudiant</button>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-    <div id="rejected" class="tab" style="display: none">
-        {% for match in refusedMatchings  %}
-            <div style="background-color: #A5201E; color: white" class="mb-4 d-flex flex-row justify-content-between align-items-center">
-                <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">
-                <span>{{ match.student.displayName }}</span>
-                <span>{{ match.percentage | round }} %</span>
-                <div style="text-align: center;margin-right: 25px; margin-top: 3px;">
-                    L'etudiant n'est malheureusement pas intéréssé<br>par votre offre ou a déjà trouvé son stage/alternance
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+{#    <div id="accepted" class="tab" style="display: none">#}
+{#        {% for match in acceptedMatchings %}#}
+{#            <div class="mb-4 d-flex flex-row justify-content-between align-items-center">#}
+{#                <img src="{{ match.student.picture is defined ? asset('/images/user/' ~ match.student.picture) : "" }}" alt="">#}
+{#                <span>{{ match.student.displayName }}</span>#}
+{#                <span>{{ match.percentage | round }} %</span>#}
+{#                <div>#}
+{#                    <a href="{{ path('match_student_view_cv_file' , { id : match.id }) }}" style="width: 210px" class="btn btn-primary">Voir le CV</a>#}
+{#                    <button value="{{ match.id }}" style="width: 210px" class="btn btn-primary">Contacter l'étudiant</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#    <div id="rejected" class="tab" style="display: none">#}
+{#        {% for match in refusedMatchings  %}#}
+{#            <div style="background-color: #E94E1A; color: white" class="mb-4 d-flex flex-row justify-content-between align-items-center">#}
+{#                <img src="{{ match.student.picture ? asset(match.student.picture) : "" }}" alt="">#}
+{#                <span>{{ match.student.displayName }}</span>#}
+{#                <span>{{ match.percentage | round }} %</span>#}
+{#                <div style="text-align: center;margin-right: 25px; margin-top: 3px;">#}
+{#                    L'etudiant n'est malheureusement pas intéréssé<br>par votre offre ou a déjà trouvé son stage/alternance#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
     <div id="modal_accept" class="modal card" style="display: none">
         <p>En cliquant sur "Accepter l'offre", l'entreprise recevera un message précisant que vous êtes intéressé(e) par son offre.</p>
         <p>Elle aura accèes à votre CV et pourra vous contacter par mail et téléphone</p>
@@ -171,7 +171,7 @@
             document.getElementById('rejected-tab').style.color = 'black';
             document.getElementById('accepted-tab').style.color = 'black';            document.getElementById('rejected').style.display = 'none';
             document.getElementById('accepted').style.display = 'none';
-            document.getElementById('all-tab').style.color = '#a5201e';
+            document.getElementById('all-tab').style.color = '#E94E1A';
             e.preventDefault();
         });
         document.getElementById('accepted-tab').addEventListener("click",e => {
@@ -180,7 +180,7 @@
             document.getElementById('rejected-tab').style.color = 'black';            document.getElementById('all').style.display = 'none';
             document.getElementById('rejected').style.display = 'none';
             document.getElementById('all-tab').style.color = 'black';
-            document.getElementById('accepted-tab').style.color = '#a5201e';
+            document.getElementById('accepted-tab').style.color = '#E94E1A';
             e.preventDefault();
         });
         document.getElementById('rejected-tab').addEventListener("click",e => {
@@ -190,7 +190,7 @@
             document.getElementById('accepted').style.display = 'none';
             document.getElementById('all').style.display = 'none';
             document.getElementById('accepted-tab').style.color = 'black';
-            document.getElementById('rejected-tab').style.color = '#a5201e';
+            document.getElementById('rejected-tab').style.color = '#E94E1A';
             e.preventDefault();
         });
         Array.from(document.getElementsByClassName('btn-accept')).forEach(function(element) {
@@ -251,3 +251,17 @@
         }
     </script>
 {% endblock %}
+
+
+ON LES A BAISER PCQ ON A DIT QUE CETAIS PAS POSSIBLE D AVOIR DES MATCH REGLO
+
+donc tout ce qu'il montre dans le dash board c faux
+
+fais gaffe on t'entend fort ca serais con de perdre des pts
+
+
+
+TEMA LE LOGO
+
+
+BREHAMMEL IL EST DEGOUTER CHU MORT

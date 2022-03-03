@@ -98,15 +98,15 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $user = $token->getUser();
 
         if (in_array('ROLE_STUDENT', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('default_student'));
+            return new RedirectResponse($this->urlGenerator->generate('questions_student'));
         }
 
         if (in_array('ROLE_COMPANY', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('default_company'));
+            return new RedirectResponse($this->urlGenerator->generate('match_and_offers'));
         }
 
         if (in_array('ROLE_ISCOM', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('default_iscom'));
+            return new RedirectResponse($this->urlGenerator->generate('dashboard_iscom'));
         }
     }
 

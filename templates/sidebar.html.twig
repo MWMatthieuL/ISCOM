@@ -1,6 +1,20 @@
 <div id="sidebar">
     <div id="quick-user">
-        <span class="picture {{ app.user.type }}" style="background-image: url({{ asset('images/user/'~app.user.picture) }})"></span>
+        {% if app.user.type == 'company' %}
+            <span class="picture {{ app.user.type }}" style="background-image: url({{ asset('images/user/'~app.user.picture) }})"></span>
+        {% else %}
+            <span style="
+    font-weight: bold;
+    background: #E94E1A;
+    width: 115px;
+    height: 115px;
+    text-align: center;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 55px;
+    line-height: 115px;
+">{{ app.user.firstname|first }}{{ app.user.lastname|first }}</span>
+        {% endif %}
         <div>
             <strong>
                 {% if  app.user.companyName is defined and app.user.companyName is not null %}
@@ -14,89 +28,89 @@
     </div>
     <div>
         <span class="text-muted ml-4">Menu</span>
-        {%  set role =  app.user.roles | filter(role => role is not same as "ROLE_USER") | first %}
+        {% set role =  app.user.roles | filter(role => role is not same as "ROLE_USER") | first %}
         <ul id="nav_items">
-            {%  if role is same as 'ROLE_ISCOM' %}
-                <li class="{{ app.request.get('_route') is same as "profile_iscom"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-person"></i>
-                    <a href="{{ path('profile_iscom') }}"  class="h6">Profil</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "password_iscom"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-lock"></i>
-                    <a href="{{ path('password_iscom') }}" class="h6">Mot de passe</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "company_search"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-building"></i>
-                    <a href="{{ path('company_search') }}" class="h6">Entreprise</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "students_search"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-mortarboard"></i>
-                    <a href="{{ path('students_search') }}" class="h6">Etudiants</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "dashboard_iscom"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-bar-chart-line"></i>
-                    <a href="{{ path('dashboard_iscom') }}" class="h6">Dashboard</a>
-                </span>
-                </li>
-            {% elseif role is same as 'ROLE_COMPANY' %}
-                <li class="{{ app.request.get('_route') is same as "profile_company"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-person"></i>
-                    <a href="{{ path('profile_company') }}"  class="h6 {{ app.request.get('_route') is same as "profile_company"  ? 'active' : ''}}">Profil</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "password_company"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-lock"></i>
-                    <a href="{{ path('password_company') }}" class="h6">Mot de passe</a>
-                </span>
-                </li>
+{#            {%  if role is same as 'ROLE_ISCOM' %}#}
+{#                <li class="{{ app.request.get('_route') is same as "profile_iscom"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-person"></i>#}
+{#                    <a href="{{ path('profile_iscom') }}"  class="h6">Profil</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "password_iscom"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-lock"></i>#}
+{#                    <a href="{{ path('password_iscom') }}" class="h6">Mot de passe</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "company_search"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-building"></i>#}
+{#                    <a href="{{ path('company_search') }}" class="h6">Entreprise</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "students_search"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-mortarboard"></i>#}
+{#                    <a href="{{ path('students_search') }}" class="h6">Etudiants</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "dashboard_iscom"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-bar-chart-line"></i>#}
+{#                    <a href="{{ path('dashboard_iscom') }}" class="h6">Dashboard</a>#}
+{#                </span>#}
+{#                </li>#}
+            {% if role is same as 'ROLE_COMPANY' %}
+{#                <li class="{{ app.request.get('_route') is same as "profile_company"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-person"></i>#}
+{#                    <a href="{{ path('profile_company') }}"  class="h6 {{ app.request.get('_route') is same as "profile_company"  ? 'active' : ''}}">Profil</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "password_company"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-lock"></i>#}
+{#                    <a href="{{ path('password_company') }}" class="h6">Mot de passe</a>#}
+{#                </span>#}
+{#                </li>#}
                 <li class="{{ app.request.get('_route') is same as "match_and_offers"  ? 'active' : ''}}">
                 <span>
                     <i class="bi bi-briefcase"></i>
-                    <a href="{{ path('match_and_offers') }}" class="h6">Mes offres et matchs</a>
+                    <a href="{{ path('match_and_offers') }}" class="h6">Mes offres postées</a>
                 </span>
                 </li>
-                <li class="{{ app.request.get('_route') is same as "match_company_concluded"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-heart"></i>
-                    <a href="{{ path('match_company_concluded') }}" class="h6">Matchs conclus</a>
-                </span>
-                </li>
+{#                <li class="{{ app.request.get('_route') is same as "match_company_concluded"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-heart"></i>#}
+{#                    <a href="{{ path('match_company_concluded') }}" class="h6">Matchs conclus</a>#}
+{#                </span>#}
+{#                </li>#}
             {% elseif role is same as 'ROLE_STUDENT' %}
-                <li class="{{ app.request.get('_route') is same as "profile_student"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-person"></i>
-                    <a href="{{ path('profile_student') }}"  class="h6 {{ app.request.get('_route') is same as "profile_student"  ? 'active' : ''}}">Profil</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "password_student"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-lock"></i>
-                    <a href="{{ path('password_student') }}" class="h6">Mot de passe</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "match_student"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-briefcase"></i>
-                    <a href="{{ path('match_student') }}" class="h6">Mes matchs</a>
-                </span>
-                </li>
-                <li class="{{ app.request.get('_route') is same as "match_student_concluded"  ? 'active' : ''}}">
-                <span>
-                    <i class="bi bi-heart"></i>
-                    <a href="{{ path('match_student_concluded') }}" class="h6">Matchs conclus</a>
-                </span>
-                </li>
+{#                <li class="{{ app.request.get('_route') is same as "profile_student"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-person"></i>#}
+{#                    <a href="{{ path('profile_student') }}"  class="h6 {{ app.request.get('_route') is same as "profile_student"  ? 'active' : ''}}">Profil</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "password_student"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-lock"></i>#}
+{#                    <a href="{{ path('password_student') }}" class="h6">Mot de passe</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "match_student"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-briefcase"></i>#}
+{#                    <a href="{{ path('match_student') }}" class="h6">Mes matchs</a>#}
+{#                </span>#}
+{#                </li>#}
+{#                <li class="{{ app.request.get('_route') is same as "match_student_concluded"  ? 'active' : ''}}">#}
+{#                <span>#}
+{#                    <i class="bi bi-heart"></i>#}
+{#                    <a href="{{ path('match_student_concluded') }}" class="h6">Matchs conclus</a>#}
+{#                </span>#}
+{#                </li>#}
             {% endif %}
             <li>
                 <span>

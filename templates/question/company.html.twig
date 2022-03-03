@@ -39,7 +39,8 @@
         }
 
         :checked + label {
-            background-color: #74dafc;
+            background-color: #6D74B5;
+            color: #fff;
         }
 
         input[type="radio"] + label {
@@ -98,7 +99,7 @@ position: -webkit-sticky;
                 <div id="quick_user_modal" style="display: none; top: 70px; right: 8%" class="p-2">
                     <ul>
                         <li>
-                            <div style="background: #A5201E;color: #fff;font-size: 24px;font-weight: bold;width: 56px;height: 56px;text-align: center;border-radius: 5px; margin-right: 20px">
+                            <div style="background: #E94E1A;color: #fff;font-size: 24px;font-weight: bold;width: 56px;height: 56px;text-align: center;border-radius: 5px; margin-right: 20px">
                                 <p style="margin: 0 auto;">{{ app.user.firstname|first|upper }}{{ app.user.lastname|first|upper }}</p>
                             </div>
                             <div>
@@ -106,18 +107,18 @@ position: -webkit-sticky;
                                 {{ app.user.email }}
                             </div>
                         </li>
-                        <li>
-                            <i class="bi bi-person"></i>
-                            <a href="{{ path('profile_' ~  app.user.type | replace({'admin': 'iscom'})) }}" class="h6">Compte</a>
-                        </li>
-                        <li>
-                            <i class="bi bi-question-octagon"></i>
-                            <a href="{{ path('help') }}" class="h6">Aide</a>
-                        </li>
-                        <li>
-                            <i class="bi bi-file-earmark-medical"></i>
-                            <a href="{{ path('cgu') }}" class="h6">Condition d'utilisation</a>
-                        </li>
+{#                        <li>#}
+{#                            <i class="bi bi-person"></i>#}
+{#                            <a href="{{ path('profile_' ~  app.user.type | replace({'admin': 'iscom'})) }}" class="h6">Compte</a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <i class="bi bi-question-octagon"></i>#}
+{#                            <a href="{{ path('help') }}" class="h6">Aide</a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <i class="bi bi-file-earmark-medical"></i>#}
+{#                            <a href="{{ path('cgu') }}" class="h6">Condition d'utilisation</a>#}
+{#                        </li>#}
                         <li>
                             <i class="bi bi-box-arrow-right"></i>
                             <a href="{{ path('app_logout') }}" class="h6">Se déconnecter</a>
@@ -141,7 +142,7 @@ position: -webkit-sticky;
         {{ form_start(form) }}
             <h2 style="font-weight: bold; margin-top: 80px; margin-bottom: 20px;">Intitulé de votre offre</h2>
             {{ form_row(form.title) }}
-            <label id="offer_file" for="offer_offerFile_file">Chargez votre offre au format PDF (recommandé)<i style="float: right; color: #A5201E; font-size: 30px" class="bi bi-download"></i></label>
+            <label id="offer_file" for="offer_offerFile_file">Chargez votre offre au format PDF (recommandé)<i style="float: right; color: #E94E1A; font-size: 30px" class="bi bi-download"></i></label>
             {{ form_row(form.offerFile) }}
             <p style="font-weight: bold; margin: -10px 10px 10px 25px">Ou</p>
             {{ form_row(form.link) }}
@@ -174,7 +175,7 @@ position: -webkit-sticky;
                 En cliquant sur <strong>ENVOYER</strong>, votre offre sera envoyée aux étudiants qui ont le plus de critères communs avec votre demande et correspondent le plus à votre besoin. <br>
                 Si les étudiants sont intéressés ou disponibles vous recevrez leur CV sous 72h.
             </p>
-            <button style="margin: 0 auto 100px; display: block; border: none; background-color: #A5201E; color: #fff; padding: 40px 60px; border-radius: 7px 7px 7px 0px; font-size: 32px" type="submit">
+            <button style="margin: 0 auto 100px; display: block; border: none; background-color: #E94E1A; color: #fff; padding: 40px 60px; border-radius: 7px 7px 7px 0px; font-size: 32px" type="submit">
                 ENVOYER
             </button>
         {{ form_end(form) }}
@@ -208,7 +209,7 @@ position: -webkit-sticky;
 
     $(document).on('change', '#offer_offerFile_file',function() {
             let $filename = $( "#offer_offerFile_file" ).get(0).files[0].name;
-            $('#offer_file').html($filename + '<i style="float: right; color: #A5201E; font-size: 30px" class="bi bi-download"></i>');
+            $('#offer_file').html($filename + '<i style="float: right; color: #E94E1A; font-size: 30px" class="bi bi-download"></i>');
     });
 
     </script>

@@ -22,6 +22,10 @@ class QuestionController extends AbstractController
     {
         $user = $this->getUser();
 
+        if(!empty($user->getQuestionnary())) {
+            return $this->redirectToRoute('match_student');
+        }
+
         $form = $this->createForm(StudentQuestionsType::class);
         $form->handleRequest($request);
 
@@ -99,7 +103,7 @@ class QuestionController extends AbstractController
 
             $em->flush();
 
-            return $this->redirectToRoute('default_student');
+            return $this->redirectToRoute('match_student');
         }
 
         return $this->render('question/student.html.twig', [
