@@ -14,13 +14,13 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress",
-        "heroku-postbuild" : "node_modules/.bin/encore production"
+        "heroku-postbuild": "node_modules/.bin/encore production"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.2",
         "bootstrap": "^4.5.3",
         "jquery": "^3.5.1",
-        "node-sass": "^5.0.0",
+        "sass": "^1.49.9",
         "popper.js": "^1.16.1",
         "sass-loader": "^10.1.1"
     }
