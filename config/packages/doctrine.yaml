@@ -1,12 +1,6 @@
 doctrine:
     dbal:
-        driver: 'pdo_pgsql'
-        server_version: '5.7'
-        charset: utf8
-        default_table_options:
-            charset: utf8
-            collate: utf8_unicode_ci
-        url: '%env(resolve:DATABASE_URL)%'
+        url: '%env(DATABASE_URL)%'
 
 #        dbname: '%env(DATABASE_NAME)%'
 #        host: '%env(DATABASE_HOST)%'
